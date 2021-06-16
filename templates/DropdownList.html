@@ -1,0 +1,44 @@
+<html>
+<head>
+    <title>Dropdown List</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="col-md-offset-4 col-md-3">
+            <h2 class="page-header text-primary text-center"><span class="fa fa-calendar"> Dropdown List</span></h2>
+            <center>
+            <div class="col-md-6">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="dropdown"> Web Designing <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">CSS</a></li>
+                        <li><a href="#">Bootstrap</a></li>
+                        <li><a href="#">Jquery</a></li>
+                        <li><a href="#">Javascript</a></li>
+                    </ul>
+                </div>
+            </div>
+                <div class="col-md-6">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-info btn-lg" data-toggle="dropdown"> Programming Language <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">C</a></li>
+                        <li><a href="#">C++</a></li>
+                        <li><a href="#">Java</a></li>
+                        <li><a href="#">Python</a></li>
+                        <li><a href="#">Tkinter</a></li>
+                        <li><a href="#">Flask</a></li>
+                    </ul>
+                </div>
+                </div>
+                </center>
+        </div>
+    </div>
+</body>
+</html>
+

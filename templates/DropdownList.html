@@ -15,11 +15,10 @@
                 <div class="dropdown">
                     <button type="button" class="btn btn-info btn-lg" data-toggle="dropdown"> Web Designing <span class="caret"></span></button>
                     <ul class="dropdown-menu">
-                        <li><a href="#">HTML</a></li>
-                        <li><a href="#">CSS</a></li>
-                        <li><a href="#">Bootstrap</a></li>
-                        <li><a href="#">Jquery</a></li>
-                        <li><a href="#">Javascript</a></li>
+                        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                        {% for item in name: %}
+                        <li><a href="#">{{ item }}</a></li>
+                        {% endfor %} 
                     </ul>
                 </div>
             </div>

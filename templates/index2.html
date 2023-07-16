@@ -14,12 +14,12 @@
             <div class="col-md-6">
                 <div class="dropdown">
                     <button onclick="myFunction()" class="btn btn-info btn-lg" data-toggle="dropdown"> Web Designing <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
+                    <div id="myDropdown" class="dropdown-content">
                         <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
                         {% for item in name: %}
                         <li><a href="#">{{ item }}</a></li>
                         {% endfor %} 
-                    </ul>
+                    </div>
                 </div>
             </div>
                 <div class="col-md-6">

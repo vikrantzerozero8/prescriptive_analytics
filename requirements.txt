@@ -1,0 +1,9 @@
+gunicorn
+pulp
+PyGithub
+Flask
+numpy
+pandas
+pycaret
+
+

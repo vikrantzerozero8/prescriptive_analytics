@@ -15,7 +15,7 @@
                 <div class="dropdown">
                     <button type="button" class="btn btn-info btn-lg" data-toggle="dropdown"> Web Designing <span class="caret"></span></button>
                     <ul class="dropdown-menu">
-                        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction.js">
+                        <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
                         {% for item in name: %}
                         <li><a href="#">{{ item }}</a></li>
                         {% endfor %} 
@@ -38,6 +38,29 @@
                 </center>
         </div>
     </div>
+<script>
+/* When the user clicks on the button,
+toggle between hiding and showing the dropdown content */
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+function filterFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  div = document.getElementById("myDropdown");
+  a = div.getElementsByTagName("a");
+  for (i = 0; i < a.length; i++) {
+    txtValue = a[i].textContent || a[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      a[i].style.display = "";
+    } else {
+      a[i].style.display = "none";
+    }
+  }
+}
+</script>
 </body>
 </html>
 

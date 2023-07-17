@@ -37,6 +37,11 @@ df.rename(columns = {'CustomerName':"Party_Name","Plant":"Warehouse","TargetQuan
 def home():	
     name = df
     return render_template('index2.html', name=name)
+    
+@app.route('/')
+def home1():	
+    name1 = df
+    return render_template('index2.html', name1=name1)
 
 if __name__=='__main__':
     app.run(debug=True, use_reloader=False)

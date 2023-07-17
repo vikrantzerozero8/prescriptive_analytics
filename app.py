@@ -36,12 +36,6 @@ def home1():
     name1 = [x for x in df.Warehouse]
     return render_template('index2.html', name1=name1)
 
-@app.route('/')
-def home():	
-    name = [x for x in df.Party_Name]
-    return render_template('index2.html', name=name)
-    
-
 if __name__=='__main__':
     app.run(debug=True, use_reloader=False)
     

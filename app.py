@@ -34,13 +34,8 @@ df.columns = df.columns.str.replace(' ', '')
 df.rename(columns = {'CustomerName':"Party_Name","Plant":"Warehouse","TargetQuantity":"Net_Weight"},inplace = True)
 
 @app.route('/')
-def home1():	
-    name1 = [x for x in df.Warehouse]
-    return render_template('index2.html', name1=name1)
-
-@app.route('/')
 def home():	
-    name = [x for x in df.Party_Name]
+    name = df
     return render_template('index2.html', name=name)
 
 if __name__=='__main__':

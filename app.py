@@ -46,8 +46,6 @@ def home():
 if __name__=='__main__':
     app.run(debug=True, use_reloader=False)
 
-if __name1__=='__main__':
-    app1.run(debug=True, use_reloader=False)
     
 '''Total_rejected_WD=1&Nr_days_without_activity=2
 

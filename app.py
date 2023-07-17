@@ -29,7 +29,8 @@ file = open("data.txt","w")
 file.write(s)
 
 df = pd.read_csv('data.txt')
-df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net Weight"},inplace = True)
+df.columns = df.columns.str.replace(' ', '')
+df.rename(columns = {'CustomerName':"Party_Name","Plant":"Warehouse","TargetQuantity":"Net_Weight"},inplace = True)
 
 @app.route('/')
 def home1():	

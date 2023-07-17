@@ -2,7 +2,7 @@ from flask import Flask, render_template
 from github import Github
 from github import InputGitTreeElement
 app = Flask(__name__)
-app1 = Flask(__name1__)
+
 
 import pycaret
 from pycaret.classification import *

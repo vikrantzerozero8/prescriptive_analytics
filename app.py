@@ -37,7 +37,15 @@ def home1():
     name1 = [x for x in df.Warehouse]
     return render_template('index2.html', name1=name1)
 
+@app.route('/')
+def home():	
+    name = [x for x in df.Party_Name]
+    return render_template('index2.html', name=name)
+
 if __name__=='__main__':
+    app.run(debug=True, use_reloader=False)
+
+if __name1__=='__main__':
     app.run(debug=True, use_reloader=False)
     
 '''Total_rejected_WD=1&Nr_days_without_activity=2

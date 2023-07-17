@@ -16,9 +16,9 @@
                     <button onclick="myFunction()" class="btn btn-info btn-lg" data-toggle="dropdown"> Party_names <span class="caret"></span></button>
                     <ul id="myDropdown" class="dropdown-menu">
                         <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                        {x for item in name.Party_Name}
+                        {% for item in name.Party_Name:%}
                         <li><a href="#">{{ item }}</a></li>
-                        {x endfor x} 
+                        {% endfor %} 
                     </ul>
                 </div>
             </div>
@@ -27,9 +27,9 @@
                     <button onclick="myFunction()" class="btn btn-info btn-lg" data-toggle="dropdown"> Warehouse <span class="caret"></span></button>
                     <ul id="myDropdown" class="dropdown-menu">
                         <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
-                        {x for item in name.Warehouse}
+                        {% for item in name.Warehouse:%}
                         <li><a href="#">{{ item }}</a></li>
-                        {x endfor x}
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

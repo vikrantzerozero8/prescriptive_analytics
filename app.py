@@ -2,6 +2,7 @@ from flask import Flask, render_template
 from github import Github
 from github import InputGitTreeElement
 app = Flask(__name__)
+app1 = Flask(__name1__)
 
 import pycaret
 from pycaret.classification import *
@@ -46,7 +47,7 @@ if __name__=='__main__':
     app.run(debug=True, use_reloader=False)
 
 if __name1__=='__main__':
-    app.run(debug=True, use_reloader=False)
+    app1.run(debug=True, use_reloader=False)
     
 '''Total_rejected_WD=1&Nr_days_without_activity=2
 

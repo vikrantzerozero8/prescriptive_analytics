@@ -1,76 +1,75 @@
 <html>
-<head>
-    <title>Dropdown List</title>
-    <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
-    <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
-    <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
-</head>
-<body>
-    <div class="container-fluid">
-        <div class="col-md-offset-4 col-md-3">
+   <head>
+      <title>Dropdown List</title>
+      <link rel="stylesheet" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+      <link rel="stylesheet" href="{{url_for('static',filename='myfont/css/all.min.css')}}">
+      <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+      <script src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+   </head>
+   <body>
+      <div class="container-fluid">
+         <div class="col-md-offset-4 col-md-3">
             <h2 class="page-header text-primary text-center"><span class="fa fa-calendar"> Dropdown List</span></h2>
             <center>
             <div class="col-md-6">
-                <label> Party_names <label>
-                <select name="car_brand" data-live-search="true" id="car_brand" class="form-control" title="Select Car Brand">
-                {% for item in name.Party_Name:%}
-                <option value=>{{ item }}</option>
-                {% endfor %} 
-                </select>
+               <label> Party_names <label>
+               <select name="car_brand" data-live-search="true" id="car_brand" class="form-control" title="Select Car Brand">
+                  {% for item in name.Party_Name:%}
+                  <option value=>{{ item }}</option>
+                  {% endfor %} 
+               </select>
             </div>
             <div class="col-md-6">
-                <label> Party_names <label>
-                <select name="car_brand" data-live-search="true" id="car_brand" class="form-control" title="Select Car Brand">
-                {% for item in name.Party_Name:%}
-                <option value=>{{ item }}</option>
-                {% endfor %} 
-                </select>
+               <label> Party_names <label>
+               <select name="car_brand" data-live-search="true" id="car_brand" class="form-control" title="Select Car Brand">
+                  {% for item in name.Warehouse:%}
+                  <option value=>{{ item }}</option>
+                  {% endfor %} 
+               </select>
             </div>
-        </body>
-    </div>
-</div>
-<script>
-/* When the user clicks on the button,
-toggle between hiding and showing the dropdown content */
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-
-function myFunction2() {
-  document.getElementById("myDropdown").classList.toggle("show");
-}
-function filterFunction() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  div = document.getElementById("myDropdown");
-  a = div.getElementsByTagName("a");
-  for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
-    } else {
-      a[i].style.display = "none";
-    }
-  }
-}
-function filterFunction2() {
-  var input, filter, ul, li, a, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  div = document.getElementById("myDropdown");
-  a = div.getElementsByTagName("a");
-  for (i = 0; i < a.length; i++) {
-    txtValue = a[i].textContent || a[i].innerText;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
-    } else {
-      a[i].style.display = "none";
-    }
-  }
-}
-</script>
-</body>
+         </div>
+      </div>
+                   
+   <script>
+      /* When the user clicks on the button,
+      toggle between hiding and showing the dropdown content */
+      function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+      
+      function myFunction2() {
+        document.getElementById("myDropdown").classList.toggle("show");
+      }
+      function filterFunction() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+          txtValue = a[i].textContent || a[i].innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+          } else {
+            a[i].style.display = "none";
+          }
+        }
+      }
+      function filterFunction2() {
+        var input, filter, ul, li, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+          txtValue = a[i].textContent || a[i].innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            a[i].style.display = "";
+          } else {
+            a[i].style.display = "none";
+          }
+        }
+      }
+   </script>
+   </body>
 </html>
-

@@ -1,4 +1,5 @@
 gunicorn
+psycopg2
 pulp
 PyGithub
 Flask

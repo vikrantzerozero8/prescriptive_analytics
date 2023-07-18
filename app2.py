@@ -1,39 +1,57 @@
 #app.py
 from flask import Flask, render_template, jsonify, request
-import psycopg2 #pip install psycopg2 
-import psycopg2.extras
-      
+
 app = Flask(__name__)
-      
-app.secret_key = "caircocoders-ednalan"
-      
-DB_HOST = "localhost"
-DB_NAME = "sampledb"
-DB_USER = "postgres"
-DB_PASS = "admin"
-          
-conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS, host=DB_HOST)
- 
+from github import Github
+from github import InputGitTreeElement
+app = Flask(__name__)
+
+import pycaret
+from pycaret.classification import *
+#import pickle
+import numpy as np
+import pandas as pd
+
+#import pickle
+
+saved_final_rf = load_model('model')
+g = Github("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")
+
+user = g.get_user()
+
+repository = user.get_repo('pres')
+
+file_content = repository.get_contents('jun23.csv')
+
+bytes_data=file_content.decoded_content
+
+s=str(bytes_data,'utf-8')
+
+file = open("data.txt","w")
+
+file.write(s)
+
+df = pd.read_csv('data.txt')
+df.columns = df.columns.str.replace(' ', '')
+df.rename(columns = {'CustomerName':"Party_Name","Plant":"Warehouse","TargetQuantity":"Net_Weight"},inplace = True)
+
 @app.route('/')
 def main():
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
-    cur.execute("SELECT * FROM carbrands ORDER BY brand_id")
-    carbrands = cur.fetchall()
-    return render_template('index.html', carbrands=carbrands)
+    name = df
+    return render_template('index.html', name=name)
   
-@app.route("/carbrand",methods=["POST","GET"])
+@app.route("/name",methods=["POST","GET"])
 def carbrand():  
-    cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
     if request.method == 'POST':
         category_id = request.form['category_id'] 
         print(category_id)  
-        cur.execute("SELECT * FROM carmodels WHERE brand_id = %s ORDER BY car_models ASC", [category_id] )
-        carmodel = cur.fetchall()  
+        
+        carmodel = df
         OutputArray = []
         for row in carmodel:
             outputObj = {
-                'id': row['brand_id'],
-                'name': row['car_models']}
+                'id': row['Party_Name'],
+                'name': row['Warehouse']}
             OutputArray.append(outputObj)
     return jsonify(OutputArray)
  

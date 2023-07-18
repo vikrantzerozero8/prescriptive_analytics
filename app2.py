@@ -37,10 +37,10 @@ df.rename(columns = {'CustomerName':"Party_Name","Plant":"Warehouse","TargetQuan
 
 @app.route('/')
 def main():
-    name = df
-    return render_template('index.html', name=name)
+    carbrands = df
+    return render_template('index.html', carbrands=carbrands)
   
-@app.route("/name",methods=["POST","GET"])
+@app.route("/carbrand",methods=["POST","GET"])
 def carbrand():  
     if request.method == 'POST':
         category_id = request.form['category_id'] 

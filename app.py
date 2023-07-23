@@ -50,7 +50,7 @@ def main():
         manufacturer = st.selectbox('Select Manufacturer', options=['']+list(name.keys()))
         # display selectbox 2 if manufacturer is not "select"
         if manufacturer != 'select':
-            model_number = st.selectbox('Select Model Number', options=[''] + name[manufacturer])
+            model_number = st.selectbox('Select Model Number', options=[''] + list(name[manufacturer]))
         if st.button('Submit'):
             st.write('You selected ' + manufacturer + ' ' + model_number)      
 

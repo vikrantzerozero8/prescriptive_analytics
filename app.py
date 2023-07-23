@@ -47,10 +47,10 @@ def main():
     
     if __name__ == "__main__":
         # adding "select" as the first and default choice
-        manufacturer = st.multiselect('Select Manufacturer', options=['select']+list(name.keys()))
+        manufacturer = st.selectbox('Select Manufacturer', options=['select']+list(name.keys()))
         # display selectbox 2 if manufacturer is not "select"
         if manufacturer != 'select':
-            model_number = st.multiselect('Select Model Number', options=name[manufacturer])
+            model_number = st.selectbox('Select Model Number', options=name[manufacturer])
         if st.button('Submit'):
             st.write('You selected ' + manufacturer + ' ' + model_number)      
 

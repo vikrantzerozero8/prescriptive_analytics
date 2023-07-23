@@ -37,14 +37,22 @@ def main():
     <h2 style="color:white;text-align:center;"> Transportation cost prediction </h2>
     </div>
     """
-    st.markdown(html_temp,unsafe_allow_html = True)
+    name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
+            "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
+            "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],       
+            "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
+            "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],     
+            "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
+
     
-    brand = st.selectbox('Select Brand',df.Warehouse.unique())
-
-    model=st.multiselect('Select your model', df.loc[df.Warehouse==brand]['Party_Name'].unique())
-
-    if st.button("submit"):
-        st.write('You selected ' + ' ' + brand + ' ' + model)
+    if __name__ == "__main__":
+        # adding "select" as the first and default choice
+        manufacturer = st.multiselect('Select Manufacturer', options=['select']+list(name.keys()))
+        # display selectbox 2 if manufacturer is not "select"
+        if manufacturer != 'select':
+            model_number = st.multiselect('Select Model Number', options=name[manufacturer])
+        if st.button('Submit'):
+            st.write('You selected ' + manufacturer + ' ' + model_number)      
 
     if st.button("About"):
         st.text("Lets learn") 

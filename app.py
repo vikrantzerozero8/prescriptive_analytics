@@ -21,7 +21,7 @@ file = open("data.txt","w")
 file.write(s)
 
 df = pd.read_csv('data.txt')
-df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net Weight"},inplace = True)
+df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight"},inplace = True)
 
 def main():
     st.title("Transportation cost prediction")
@@ -107,14 +107,14 @@ def main():
             cost_mat = cost_mat.fillna(100000)
             cost_mat
             
-            # Create a pivot table with Warehouse as index, Party_Name as columns, and Net weight as values
-            weight_mat = df.pivot_table(values = 'Net Weight', index = 'Warehouse', columns = 'Party_Name', aggfunc =sum )
+            # Create a pivot table with Warehouse as index, Party_Name as columns, and Net_Weight as values
+            weight_mat = df.pivot_table(values = 'Net_Weight', index = 'Warehouse', columns = 'Party_Name', aggfunc =sum )
             # fill with zeros wherever no sulpply
             weight_mat = weight_mat.fillna(0)
             weight_mat
             
-            # create pivot table with warehouse as index and sum of net weight for particular warehouse as values
-            supply = pd.pivot_table(df, values='Net Weight', index = 'Warehouse', aggfunc=sum, margins=True)
+            # create pivot table with warehouse as index and sum of Net_Weight for particular warehouse as values
+            supply = pd.pivot_table(df, values='Net_Weight', index = 'Warehouse', aggfunc=sum, margins=True)
             # Manually assign supply values
             supply.loc['GIR'] =    1000000  # Supply for Warehouse 'GIR'
             supply.loc['GIR II'] = 1000000  # Supply for Warehouse 'GIR II'
@@ -130,7 +130,7 @@ def main():
             supply
             
             #create a pivot_tabel for total demand of each party (Before optimization the Quantity of df Transport from Warehouse the Party)
-            demand = pd.pivot_table(df, values='Net Weight', index ='Warehouse', columns ='Party_Name', aggfunc = sum, margins =True, margins_name='Grand Total')
+            demand = pd.pivot_table(df, values='Net_Weight', index ='Warehouse', columns ='Party_Name', aggfunc = sum, margins =True, margins_name='Grand Total')
             demand
             
             # Only consider the Demand

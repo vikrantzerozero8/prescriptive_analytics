@@ -51,25 +51,9 @@ def main():
         if manufacturer != '':
             model_number = st.selectbox('Select Model Number', options=[''] + name[manufacturer])
         if st.button('Submit'):
-            
-            print(df.columns)
-            df.columns
-            
-            df['Party_Name'].nunique()
-            
-            df['Party_Name'].nunique()
-            
-            
-            
-            #df.rename(columns = {'Plant': 'Warehouse'} , inplace = True)
-            
             # unique warehouses and party_names
             warehouses = df['Warehouse'].unique()
             party_names = df['Party_Name'].unique()
-            
-            print(warehouses)
-            print("\n")
-            print(party_names)
             
             #Assigning freight rate for all warehouse
             df['Freight_Rate'] = 0
@@ -215,7 +199,7 @@ def main():
 
             st.write('You selected ' + manufacturer + ' ' + model_number)
 
-            st.table("Output : {}".format(distance_matrix))
+            st.write("Output : {}".format(distance_matrix))
 
             st.success("Output : {}".format(freight_mat))
 

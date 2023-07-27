@@ -21,7 +21,7 @@ file = open("data.txt","w")
 file.write(s)
 
 df = pd.read_csv('data.txt')
-df.rename(columns = {'Customer Name':"Party_Name","Plant ":"Warehouse"," Target Quantity ":"Net Weight"},inplace = True)
+df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net Weight"},inplace = True)
 
 def main():
     st.title("Transportation cost prediction")

@@ -21,7 +21,7 @@ file = open("data.txt","w")
 file.write(s)
 
 df = pd.read_csv('data.txt')
-df.rename(columns = {'Customer Name':"Customer Name","Plant ":"Warehouse","Target Quantity":"Net Weight"},inplace = True)
+df.rename(columns = {'Customer Name':"Party_Name","Plant ":"Warehouse","Target Quantity":"Net Weight"},inplace = True)
 
 def main():
     st.title("Transportation cost prediction")
@@ -55,9 +55,9 @@ def main():
             print(df.columns)
             df.columns
             
-            df['Customer Name'].nunique()
+            df['Party_Name'].nunique()
             
-            df['Customer Name'].nunique()
+            df['Party_Name'].nunique()
             
             
             
@@ -65,7 +65,7 @@ def main():
             
             # unique warehouses and party_names
             warehouses = df['Warehouse'].unique()
-            party_names = df['Customer Name'].unique()
+            party_names = df['Party_Name'].unique()
             
             print(warehouses)
             print("\n")
@@ -105,26 +105,26 @@ def main():
                 elif (df['Freight_Rate'][i] < 100):
                     df.at[i, "shipping_cost"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Distance']
             
-            # Create a pivot table with Warehouse as index, Customer Name as columns, and Distance as values
-            distance_matrix = df.pivot_table(values= 'Distance', index='Warehouse', columns='Customer Name')
+            # Create a pivot table with Warehouse as index, Party_Name as columns, and Distance as values
+            distance_matrix = df.pivot_table(values= 'Distance', index='Warehouse', columns='Party_Name')
             # fill with 10000 Wherever no supply
             distance_matrix.fillna(10000, inplace = True)
             distance_matrix
             
-            # Create a pivot table with Warehouse as index, Customer Name as columns, and freight rate as values
-            freight_mat = df.pivot_table(values = 'Freight_Rate', index = 'Warehouse', columns = 'Customer Name')
+            # Create a pivot table with Warehouse as index, Party_Name as columns, and freight rate as values
+            freight_mat = df.pivot_table(values = 'Freight_Rate', index = 'Warehouse', columns = 'Party_Name')
             # Fill with 10000 wherever no supply
             freight_mat.fillna(100000, inplace = True)
             freight_mat
             
-            # Create a pivot table with Warehouse as index, Customer Name as columns, and shipping cost as values
-            cost_mat = df.pivot_table(values = 'shipping_cost', index = 'Warehouse', columns = 'Customer Name')
+            # Create a pivot table with Warehouse as index, Party_Name as columns, and shipping cost as values
+            cost_mat = df.pivot_table(values = 'shipping_cost', index = 'Warehouse', columns = 'Party_Name')
             #fill with 100000 wherever no supply
             cost_mat = cost_mat.fillna(100000)
             cost_mat
             
-            # Create a pivot table with Warehouse as index, Customer Name as columns, and Net weight as values
-            weight_mat = df.pivot_table(values = 'Net Weight', index = 'Warehouse', columns = 'Customer Name', aggfunc =sum )
+            # Create a pivot table with Warehouse as index, Party_Name as columns, and Net weight as values
+            weight_mat = df.pivot_table(values = 'Net Weight', index = 'Warehouse', columns = 'Party_Name', aggfunc =sum )
             # fill with zeros wherever no sulpply
             weight_mat = weight_mat.fillna(0)
             weight_mat
@@ -146,7 +146,7 @@ def main():
             supply
             
             #create a pivot_tabel for total demand of each party (Before optimization the Quantity of df Transport from Warehouse the Party)
-            demand = pd.pivot_table(df, values='Net Weight', index ='Warehouse', columns ='Customer Name', aggfunc = sum, margins =True, margins_name='Grand Total')
+            demand = pd.pivot_table(df, values='Net Weight', index ='Warehouse', columns ='Party_Name', aggfunc = sum, margins =True, margins_name='Grand Total')
             demand
             
             # Only consider the Demand

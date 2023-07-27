@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-g = Github("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")
+g = Github("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")
 
 user = g.get_user()
 

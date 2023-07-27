@@ -218,29 +218,30 @@ def main():
 
             st.table("Output : {}".format(distance_matrix))
 
+             st.success("Output : {}".format(freight_mat))
+
+            st.success("Output : {}".format(cost_mat))
+    
+            st.success("Output : {}".format(weight_mat))
+    
+            st.success("Output : {}".format(route_vars))
+    
+            st.success("Output : {}".format(cost_mat))
+    
+            st.success('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
+    
+            st.success('total_cost_before_opt',before_opt_cost)
+    
+            st.success('total_cost_after_opt',total1)
+    
+            st.success("Difference_ before- after:",(before_opt_cost) -  sum(total_after_opt))
+    
+            st.success("percentage_decrease:",((((before_opt_cost) -  sum(total_after_opt)))/((before_opt_cost)))*100)
+
           
             
         
 
-  '''      st.success("Output : {}".format(freight_mat))
-
-        st.success("Output : {}".format(cost_mat))
-
-        st.success("Output : {}".format(weight_mat))
-
-        st.success("Output : {}".format(route_vars))
-
-        st.success("Output : {}".format(cost_mat))
-
-        st.success('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
-
-        st.success('total_cost_before_opt',before_opt_cost)
-
-        st.success('total_cost_after_opt',total1)
-
-        st.success("Difference_ before- after:",(before_opt_cost) -  sum(total_after_opt))
-
-        st.success("percentage_decrease:",((((before_opt_cost) -  sum(total_after_opt)))/((before_opt_cost)))*100) '''
         
 
         

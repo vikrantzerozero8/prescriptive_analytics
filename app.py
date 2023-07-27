@@ -214,11 +214,15 @@ def main():
             # Calculating the percentage decrease in total transportation cost
             #print("percentage_decrease:",((((before_opt_cost) -  sum(total_after_opt)))/((before_opt_cost)))*100)
 
-        st.write('You selected ' + manufacturer + ' ' + model_number)  
-            
-        st.table("Output : {}".format(distance_matrix))
+            st.write('You selected ' + manufacturer + ' ' + model_number)
 
-        st.success("Output : {}".format(freight_mat))
+            st.table("Output : {}".format(distance_matrix))
+
+          
+            
+        
+
+  '''      st.success("Output : {}".format(freight_mat))
 
         st.success("Output : {}".format(cost_mat))
 
@@ -236,7 +240,7 @@ def main():
 
         st.success("Difference_ before- after:",(before_opt_cost) -  sum(total_after_opt))
 
-        st.success("percentage_decrease:",((((before_opt_cost) -  sum(total_after_opt)))/((before_opt_cost)))*100)
+        st.success("percentage_decrease:",((((before_opt_cost) -  sum(total_after_opt)))/((before_opt_cost)))*100) '''
         
 
         

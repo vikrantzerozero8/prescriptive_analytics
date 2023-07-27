@@ -21,8 +21,7 @@ file = open("data.txt","w")
 file.write(s)
 
 df = pd.read_csv('data.txt')
-df.columns = df.columns.str.replace(' ', '')
-df.rename(columns = {'CustomerName':"Party_Name","Plant":"Warehouse","TargetQuantity":"Net_Weight"},inplace = True)
+df.rename(columns = {'Customer Name':"Customer Name","Plant ":"Warehouse","Target Quantity":"Net Weight"},inplace = True)
 
 def main():
     st.title("Transportation cost prediction")
@@ -60,7 +59,7 @@ def main():
             
             df['Customer Name'].nunique()
             
-            df.rename(columns = {'Customer Name':"Customer Name","Plant ":"Warehouse","Target Quantity":"Net Weight"},inplace = True)
+            
             
             #df.rename(columns = {'Plant': 'Warehouse'} , inplace = True)
             

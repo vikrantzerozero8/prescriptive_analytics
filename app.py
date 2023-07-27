@@ -8,9 +8,9 @@ g = Github("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")
 
 user = g.get_user()
 
-repository = user.get_repo('pres')
+repository = user.get_repo('prescriptive_analytics')
 
-file_content = repository.get_contents('jun23.csv')
+file_content = repository.get_contents('june23.csv')
 
 bytes_data=file_content.decoded_content
 

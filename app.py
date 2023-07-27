@@ -218,7 +218,7 @@ def main():
 
             st.table("Output : {}".format(distance_matrix))
 
-             st.success("Output : {}".format(freight_mat))
+            st.success("Output : {}".format(freight_mat))
 
             st.success("Output : {}".format(cost_mat))
     

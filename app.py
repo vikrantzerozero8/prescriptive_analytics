@@ -238,3 +238,5 @@ def main():
 
 if __name__=='__main__':
     main()
+#import xlrd
+#book = xlrd.open_workbook("excel.xls") # in my case the directory contains the excel file named excel.xls

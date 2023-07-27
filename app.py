@@ -10,7 +10,7 @@ user = g.get_user()
 
 repository = user.get_repo('prescriptive_analytics')
 
-file_content = repository.get_contents('june23.csv')
+file_content = repository.get_contents('June23.csv')
 
 bytes_data=file_content.decoded_content
 

@@ -191,7 +191,7 @@ def main():
                     decision_var_df.loc[w, p] = route_vars[w][p].varValue
             
             # Decision_Variables(How Much Quantity of df Transport form Warehouse to Party )
-            decision_var_df
+            #decision_var_df
             
             # Verify the cost after Optimization
             total_after_opt = [decision_var_df.loc[w][p] * cost_mat.loc[w][p] .sum().sum() for w in warehouses for p in party_names]

@@ -211,7 +211,7 @@ def main():
     
             st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
     
-            st.write('total_cost_before_opt'= {:,} '.format(int(value(before_opt_cost))))
+            st.write('total_cost_before_opt',before_opt_cost)
     
             st.write("Difference_ before- after:",(before_opt_cost) -  sum(total_after_opt))
     

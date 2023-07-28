@@ -23,6 +23,18 @@ file.write(s)
 df = pd.read_csv('data.txt')
 df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight"},inplace = True)
 
+
+if df["Net_Weight"].dtype == object:
+    gh = []
+    for i in df['Net_Weight']:
+            if " " in i:
+              i = i.strip()
+            if "," in i:
+              i = i.replace(",","")
+            gh.append(i)
+    df1 = pd.DataFrame({'Net_Weight':gh})
+    df['Net_Weight'] = df1['Net_Weight'].astype("float")
+
 def main():
     st.title("Transportation cost prediction")
     

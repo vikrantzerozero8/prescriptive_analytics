@@ -174,14 +174,7 @@ def main():
             
             # Execute the problem
             prob.solve()
-            # save transformation pipeline and model
-            
-            
-            #print('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
-            
-            # shows the status of the Problem
-            #print(f"Status: {LpStatus[prob.status]}")
-            
+           
             # Create DataFrame
             decision_var_df = pd.DataFrame(index=distance_matrix.index, columns=distance_matrix.columns, dtype='float')
             
@@ -189,9 +182,6 @@ def main():
             for w in distance_matrix.index:
                 for p in distance_matrix.columns:
                     decision_var_df.loc[w, p] = route_vars[w][p].varValue
-            
-            # Decision_Variables(How Much Quantity of df Transport form Warehouse to Party )
-            #decision_var_df
             
             # Verify the cost after Optimization
             total_after_opt = [decision_var_df.loc[w][p] * cost_mat.loc[w][p] .sum().sum() for w in warehouses for p in party_names]
@@ -201,51 +191,23 @@ def main():
             
             # Before_Optimization the Transportation Cost in ₹
             before_opt_cost = df['Amount'].sum()
-            #print('total_cost_before_opt',before_opt_cost)
             
-            #Total Cost - Total Minimized Cost
-            #print("Difference_ before- after:",(before_opt_cost) -  sum(total_after_opt))
-            
-            # Calculating the percentage decrease in total transportation cost
-            #print("percentage_decrease:",((((before_opt_cost) -  sum(total_after_opt)))/((before_opt_cost)))*100)
-
             st.write('You selected ' + manufacturer + ' ' + model_number)
 
-            st.write('                      Distance matrix                       ')
-
-            st.table(distance_matrix)
-
-            st.success("Output : {}".format(freight_mat))
-
-            st.success("Output : {}".format(cost_mat))
+            st.write('COST MATRIX')
     
-            st.success("Output : {}".format(weight_mat))
+            st.table(cost_mat)
     
-            st.success("Output : {}".format(route_vars))
+            st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
     
-            st.success("Output : {}".format(cost_mat))
+            st.write('total_cost_before_opt',before_opt_cost)
     
-            st.success('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
+            st.write('total_cost_after_opt',total1)
     
-            st.success('total_cost_before_opt',before_opt_cost)
+            st.write("Difference_ before- after:",(before_opt_cost) -  sum(total_after_opt))
     
-            st.success('total_cost_after_opt',total1)
-    
-            st.success("Difference_ before- after:",(before_opt_cost) -  sum(total_after_opt))
-    
-            st.success("percentage_decrease:",((((before_opt_cost) -  sum(total_after_opt)))/((before_opt_cost)))*100)
+            st.write("percentage_decrease:",((((before_opt_cost) -  sum(total_after_opt)))/((before_opt_cost)))*100)
 
-          
-            
-        
-
-        
-
-        
-
-
-
-    
     if st.button("About"):
         st.text("Lets learn") 
         st.text("Built with streamlit")  

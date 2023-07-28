@@ -211,6 +211,8 @@ def main():
 
             st.write('You selected ' + manufacturer + ' ' + model_number)
 
+            st.write('                      Distance matrix                       ')
+
             st.table(distance_matrix)
 
             st.success("Output : {}".format(freight_mat))

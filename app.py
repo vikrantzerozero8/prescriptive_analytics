@@ -22,15 +22,12 @@ file.write(s)
 
 df = pd.read_csv('data.txt')
 df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight"},inplace = True)
-
+import re
 
 if df["Net_Weight"].dtype == object:
     gh = []
     for i in df['Net_Weight']:
-            if " " in i:
-              i = i.strip()
-            if "," in i:
-              i = i.replace(",","")
+            i = re.sub('_-[^a-zA-Z \n\.]', '', i)
             gh.append(i)
     df1 = pd.DataFrame({'Net_Weight':gh})
     df['Net_Weight'] = df1['Net_Weight'].astype("float")
@@ -38,10 +35,7 @@ if df["Net_Weight"].dtype == object:
 if df["Amount"].dtype == object:
     gh = []
     for i in df['Amount']:
-            if " " in i:
-              i = i.strip()
-            if "," in i:
-              i = i.replace(",","")
+            i = re.sub('_-[^a-zA-Z \n\.]', '', i)
             gh.append(i)
     df1 = pd.DataFrame({'Amount':gh})
     df['Amount'] = df1['Amount'].astype("float")

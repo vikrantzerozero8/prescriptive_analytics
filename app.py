@@ -35,6 +35,17 @@ if df["Net_Weight"].dtype == object:
     df1 = pd.DataFrame({'Net_Weight':gh})
     df['Net_Weight'] = df1['Net_Weight'].astype("float")
 
+if df["Amount"].dtype == object:
+    gh = []
+    for i in df['Amount']:
+            if " " in i:
+              i = i.strip()
+            if "," in i:
+              i = i.replace(",","")
+            gh.append(i)
+    df1 = pd.DataFrame({'Amount':gh})
+    df['Amount'] = df1['Amount'].astype("float")
+
 def main():
     st.title("Transportation cost prediction")
     
@@ -200,7 +211,7 @@ def main():
     
             st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
     
-            st.write('total_cost_before_opt',before_opt_cost)
+            st.write('total_cost_before_opt'= {:,} '.format(int(value(before_opt_cost))))
     
             st.write("Difference_ before- after:",(before_opt_cost) -  sum(total_after_opt))
     

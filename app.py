@@ -105,25 +105,25 @@ def main():
             distance_matrix = df.pivot_table(values= 'Distance', index='Warehouse', columns='Party_Name')
             # fill with 10000 Wherever no supply
             distance_matrix.fillna(10000, inplace = True)
-            distance_matrix
+            #distance_matrix
             
             # Create a pivot table with Warehouse as index, Party_Name as columns, and freight rate as values
             freight_mat = df.pivot_table(values = 'Freight_Rate', index = 'Warehouse', columns = 'Party_Name')
             # Fill with 10000 wherever no supply
             freight_mat.fillna(100000, inplace = True)
-            freight_mat
+            #freight_mat
             
             # Create a pivot table with Warehouse as index, Party_Name as columns, and shipping cost as values
             cost_mat = df.pivot_table(values = 'shipping_cost', index = 'Warehouse', columns = 'Party_Name')
             #fill with 100000 wherever no supply
             cost_mat = cost_mat.fillna(100000)
-            cost_mat
+            #cost_mat
             
             # Create a pivot table with Warehouse as index, Party_Name as columns, and Net_Weight as values
             weight_mat = df.pivot_table(values = 'Net_Weight', index = 'Warehouse', columns = 'Party_Name', aggfunc =sum )
             # fill with zeros wherever no sulpply
             weight_mat = weight_mat.fillna(0)
-            weight_mat
+            #weight_mat
             
             # create pivot table with warehouse as index and sum of Net_Weight for particular warehouse as values
             supply = pd.pivot_table(df, values='Net_Weight', index = 'Warehouse', aggfunc=sum, margins=True)
@@ -139,24 +139,24 @@ def main():
             supply = supply.iloc[:-1]
             
             # Display the updated supply values
-            supply
+            #supply
             
             #create a pivot_tabel for total demand of each party (Before optimization the Quantity of df Transport from Warehouse the Party)
             demand = pd.pivot_table(df, values='Net_Weight', index ='Warehouse', columns ='Party_Name', aggfunc = sum, margins =True, margins_name='Grand Total')
-            demand
+            #demand
             
             # Only consider the Demand
             demand = demand.iloc[6:]
             # Rename the column
             demand.rename(index= {'Grand Total': 'Demand'}, inplace = True)
-            demand
+            #demand
             
             # Define the problem
             prob = LpProblem("Transportation Problem", LpMinimize)
             
             # Define decision variables
             route_vars = LpVariable.dicts("Route", (warehouses, party_names), lowBound=0, cat='Continuous')
-            route_vars
+            #route_vars
             
             # Define the objective function
             prob += lpSum([route_vars[w][p] * cost_mat.loc[w][p] for w in warehouses for p in party_names]), " Transportation Cost"
@@ -166,7 +166,7 @@ def main():
                 prob += lpSum([route_vars[w][p]   for p in party_names]) <= supply.loc[w] , "Sum of quatity supplied from Warehouse to paty %s" % w
             
             demand2 = demand.T
-            demand2
+            #demand2
             
             # Define Demand Constraints
             for p in party_names:

@@ -209,9 +209,9 @@ def main():
             
             st.write('You selected ' + manufacturer + ' ' + model_number)
 
-            st.write('COST MATRIX')
+            st.write('DECISION VARIABLE')
     
-            st.table(cost_mat)
+            st.table(decision_var_df)
     
             st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
     

@@ -23,6 +23,10 @@ file.write(s)
 df = pd.read_csv('data.txt')
 df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight"},inplace = True)
 import re
+# EDA 
+
+df=df[df!=0].dropna()
+df.reset_index()
 
 if df["Net_Weight"].dtype == object:
     gh = []

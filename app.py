@@ -73,14 +73,14 @@ def main():
     
     if __name__ == "__main__":
         # adding "select" as the first and default choice
-        manufacturer = st.selectbox('Select Manufacturer', options=['']+list(name.keys()))
+        manufacturer = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
         # display selectbox 2 if manufacturer is not "select"
         if manufacturer != '':
-            model_number = st.selectbox('Select Model Number', options=[''] + name[manufacturer])
+            model_number = st.selectbox('Select Party Name', options=[''] + name[manufacturer])
         if st.button('Submit'):
             # unique warehouses and party_names
-            warehouses = df['Warehouse'].unique()
-            party_names = df['Party_Name'].unique()
+            warehouses = manufacturer
+            party_names = model_number
             
             #Assigning freight rate for all warehouse
             df['Freight_Rate'] = 0

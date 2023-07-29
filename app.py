@@ -36,7 +36,7 @@ if df["Amount"].dtype == object:
     gh = []
     for i in df['Amount']:
              i = re.sub('[a-zA-Z \n\.\s-_,]', '', i)
-            gh.append(i)
+             gh.append(i)
     df1 = pd.DataFrame({'Amount':gh})
     df['Amount'] = df1['Amount'].astype("float")
 

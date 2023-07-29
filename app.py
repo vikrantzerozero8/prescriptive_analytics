@@ -27,7 +27,7 @@ import re
 if df["Net_Weight"].dtype == object:
     gh = []
     for i in df['Net_Weight']:
-            i = re.sub('[^a-zA-Z \n\.\s-_]', '', i)
+            i = re.sub('[^a-zA-Z \n\.\s-_,]', '', i)
             gh.append(i)
     df1 = pd.DataFrame({'Net_Weight':gh})
     df['Net_Weight'] = df1['Net_Weight'].astype("float")
@@ -35,7 +35,7 @@ if df["Net_Weight"].dtype == object:
 if df["Amount"].dtype == object:
     gh = []
     for i in df['Amount']:
-             i = re.sub('[^a-zA-Z \n\.\s-_]', '', i)
+             i = re.sub('[^a-zA-Z \n\.\s-_,]', '', i)
             gh.append(i)
     df1 = pd.DataFrame({'Amount':gh})
     df['Amount'] = df1['Amount'].astype("float")

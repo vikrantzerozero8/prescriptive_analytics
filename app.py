@@ -219,7 +219,7 @@ def main():
     
             st.write("Difference_ before- after:",(before_opt_cost) -  sum(total_after_opt))
     
-            st.write("percentage_decrease:",(((before_opt_cost -  sum(total_after_opt)))/(before_opt_cost))*100)
+            st.write("percentage_decrease:",((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100)
 
     if st.button("About"):
         st.text("Lets learn") 

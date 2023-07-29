@@ -215,11 +215,11 @@ def main():
     
             st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
     
-            st.write('total_cost_before_opt',int(value(before_opt_cost)))
+            st.write('total_cost_before_opt= {:,} '.format(int(value(before_opt_cost))))
     
-            st.write("Difference_ before- after:",int(value((before_opt_cost) -  sum(total_after_opt))))
+            st.write('Difference_ before- after= {:,} '.format(int(value((before_opt_cost) -  sum(total_after_opt)))))
     
-            st.write("percentage_decrease:",int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100)))
+            st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
 
     if st.button("About"):
         st.text("Lets learn") 

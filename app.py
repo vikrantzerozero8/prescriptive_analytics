@@ -21,11 +21,9 @@ file = open("data.txt","w")
 file.write(s)
 
 df = pd.read_csv('data.txt')
-df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight"},inplace = True)
-import re
-# EDA 
-df=df[df!=0].dropna()
-df.reset_index()
+df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
+
+df = df.drop('Amount', axis=1)
 
 if df["Net_Weight"].dtype == object:
     gh = []
@@ -35,13 +33,22 @@ if df["Net_Weight"].dtype == object:
     df1 = pd.DataFrame({'Net_Weight':gh})
     df['Net_Weight'] = df1['Net_Weight'].astype("float")
 
-if df["Amount"].dtype == object:
-    gh = []
-    for i in df['Amount']:
-             i = re.sub('[-_,a-zA-Z \n\.\s]', '', i)
-             gh.append(i)
-    df1 = pd.DataFrame({'Amount':gh})
-    df['Amount'] = df1['Amount'].astype("float")
+df['Amount'] = 0
+for i in df.index:
+    if (df['Freight_Rate'][i] == 100):
+        df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Net_Weight'] 
+    elif (df['Freight_Rate'][i] < 100):
+        df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Distance'] * df.at[i, 'Net_Weight'] 
+
+import re
+
+df['Amount'] = 0
+for i in df.index:
+    if (df['Freight_Rate'][i] == 100):
+        df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Net_Weight'] 
+    elif (df['Freight_Rate'][i] < 100):
+        df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Distance'] * df.at[i, 'Net_Weight'] 
+
 
 def main():
     st.title("Transportation cost prediction")

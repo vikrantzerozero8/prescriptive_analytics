@@ -24,15 +24,24 @@ df = pd.read_csv('data.txt')
 df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight"},inplace = True)
 import re
 # EDA 
-
 df=df[df!=0].dropna()
 df.reset_index()
 
 if df["Net_Weight"].dtype == object:
-    df['Net_Weight'] = df['Net_Weight'].astype("float")
+    gh = []
+    for i in df['Net_Weight']:
+            i = re.sub('[-_,a-zA-Z \n\.\s]', '', i)
+            gh.append(i)
+    df1 = pd.DataFrame({'Net_Weight':gh})
+    df['Net_Weight'] = df1['Net_Weight'].astype("float")
 
 if df["Amount"].dtype == object:
-    df['Amount'] = df['Amount'].astype("float")
+    gh = []
+    for i in df['Amount']:
+             i = re.sub('[-_,a-zA-Z \n\.\s]', '', i)
+             gh.append(i)
+    df1 = pd.DataFrame({'Amount':gh})
+    df['Amount'] = df1['Amount'].astype("float")
 
 def main():
     st.title("Transportation cost prediction")

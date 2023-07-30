@@ -209,10 +209,16 @@ def main():
             
             st.write('You selected ' + manufacturer + ' ' + model_number)
 
-            st.write('DECISION VARIABLE')
+            st.write('RESULT DECISION VARIABLE')
+
+            result = decision_var_df.loc[manufacturer,model_number]
+            
+            st.write('RESULT  = {:,} '.format(int(value(result))))
+
+            st.write('COMPLETE DECISION VARIABLE')
     
             st.table(decision_var_df)
-    
+
             st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
     
             st.write('total_cost_before_opt= {:,} '.format(int(value(before_opt_cost))))

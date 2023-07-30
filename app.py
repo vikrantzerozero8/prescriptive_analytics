@@ -39,8 +39,9 @@ def main():
     if uploadedFile is not None : 
         df.columns = df.columns.str.replace(' ', '')
         df.columns = df.columns.str.lower()
-        df.rename(columns = {'customername':"Party_Name","plant":"Warehouse","targetquantity":"Net_Weight","freightrate":"Freight_Rate"},inplace = True)
-        st.write(df)
+        st.write(df.columns)
+        #df.rename(columns = {'customername':"Party_Name","plant":"Warehouse","targetquantity":"Net_Weight","freightrate":"Freight_Rate"},inplace = True)
+        
         name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
                 "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
                 "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],

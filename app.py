@@ -22,29 +22,40 @@ def main():
         try:
 
             df=pd.read_csv(uploadedFile,  index_col=0)
-        except:
-                try:
-                    df = pd.read_excel(uploadedFile,  index_col=0)
-                except:      
-                    df = pd.DataFrame(uploadedFile)
-        df = df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
-        name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
+            df = df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
+            name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
             "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
             "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],
             "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
             "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],
             "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
+        except:
+                try:
+                    df = pd.read_excel(uploadedFile,  index_col=0)
+                    name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
+                    "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
+                    "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],
+                    "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
+                    "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],
+                    "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
+                except:      
+                    df = pd.DataFrame(uploadedFile)
+                    name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
+                    "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
+                    "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],
+                    "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
+                    "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],
+                    "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
+    else:
+        st.sidebar.warning("you need to upload a csv or excel file.")
+    
+    if st.button('Submit'):
 
         # adding "select" as the first and default choice
         warh = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
         # display selectbox 2 if warh is not "select"
         if warh != '':
             plan = st.selectbox('Select Party Name', options=[''] + name[warh])
-            
-    else:
-        st.sidebar.warning("you need to upload a csv or excel file.")
-    
-    if st.button('Submit'):
         
         if df["Net_Weight"].dtype == object:
             gh = []

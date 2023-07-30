@@ -27,7 +27,7 @@ def main():
             
         except:
                 try:
-                    df = pd.read_excel(uploadedFile,  index_col=0)
+                    df = pd.read_excel(uploadedFile)
                     
                 except:      
                     df = pd.DataFrame(uploadedFile)
@@ -37,7 +37,7 @@ def main():
     else:
         st.sidebar.warning("you need to upload a csv or excel file.")
     if uploadedFile is not None : 
-        df.columns = df.columns.astype(str).str.replace(' ', '')
+        df.columns = df.columns.str.replace(' ', '')
         df.columns = df.columns.str.lower()
         st.write(df.columns)
         df.rename(columns = {'customername':"Party_Name","plant":"Warehouse","targetquantity":"Net_Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)

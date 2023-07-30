@@ -17,61 +17,34 @@ def main():
     <h2 style="color:white;text-align:center;"> Transportation cost prediction </h2>
     </div>
     """
-    df = st.sidebar.file_uploader("Choose a file" ,type=['csv','xlsx'],accept_multiple_files=False,key="fileUploader")
-    if df is not None :
+    uploadedFile = st.sidebar.file_uploader("Choose a file" ,type=['csv','xlsx'],accept_multiple_files=False,key="fileUploader")
+    if uploadedFile is not None :
         try:
-            
-            df=pd.read_csv(df,  index_col=0)
-            df = df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
-            name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
-            "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
-            "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],       
-            "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
-            "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],     
-            "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
-            # adding "select" as the first and default choice
-            warh = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
-            # display selectbox 2 if warh is not "select"
-            if warh != '':
-                plan = st.selectbox('Select Party Name', options=[''] + name[warh])
+
+            df=pd.read_csv(uploadedFile,  index_col=0)
         except:
                 try:
-                    df = pd.read_excel(df,  index_col=0)
-                    df = df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
-                    name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
-                    "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
-                    "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],       
-                    "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
-                    "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],     
-                    "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
-                    # adding "select" as the first and default choice
-                    warh = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
-                    # display selectbox 2 if warh is not "select"
-                    if warh != '':
-                        plan = st.selectbox('Select Party Name', options=[''] + name[warh])
+                    df = pd.read_excel(uploadedFile,  index_col=0)
                 except:      
-                    df = pd.DataFrame(df)
-                    df = df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
-                    name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
-                    "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
-                    "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],       
-                    "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
-                    "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],     
-                    "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
-                    # adding "select" as the first and default choice
-                    warh = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
-                    # display selectbox 2 if warh is not "select"
-                    if warh != '':
-                        plan = st.selectbox('Select Party Name', options=[''] + name[warh])
-                
+                    df = pd.DataFrame(uploadedFile)
+        df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
+        name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
+            "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
+            "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],
+            "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
+            "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],
+            "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
+
+        # adding "select" as the first and default choice
+        warh = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
+        # display selectbox 2 if warh is not "select"
+        if warh != '':
+            plan = st.selectbox('Select Party Name', options=[''] + name[warh])
+            
     else:
         st.sidebar.warning("you need to upload a csv or excel file.")
-
-    
     
     if st.button('Submit'):
-        
-        df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
         
         if df["Net_Weight"].dtype == object:
             gh = []
@@ -119,7 +92,6 @@ def main():
         # Calculate Shipping Cost
         
         df['shipping_cost'] = 0
-        
         for i in df.index:
             if (df['Freight_Rate'][i] == 100):
                 df.at[i, "shipping_cost"] = df.at[i, 'Freight_Rate']

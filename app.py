@@ -23,8 +23,6 @@ file.write(s)
 df = pd.read_csv('data.txt')
 df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
 
-df = df.drop('Amount', axis=1)
-
 if df["Net_Weight"].dtype == object:
     gh = []
     for i in df['Net_Weight']:

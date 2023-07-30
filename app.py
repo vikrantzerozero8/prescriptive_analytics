@@ -40,16 +40,6 @@ for i in df.index:
     elif (df['Freight_Rate'][i] < 100):
         df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Distance'] * df.at[i, 'Net_Weight'] 
 
-import re
-
-df['Amount'] = 0
-for i in df.index:
-    if (df['Freight_Rate'][i] == 100):
-        df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Net_Weight'] 
-    elif (df['Freight_Rate'][i] < 100):
-        df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Distance'] * df.at[i, 'Net_Weight'] 
-
-
 def main():
     st.title("Transportation cost prediction")
     
@@ -73,10 +63,10 @@ def main():
     
     if __name__ == "__main__":
         # adding "select" as the first and default choice
-        manufacturer = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
-        # display selectbox 2 if manufacturer is not "select"
-        if manufacturer != '':
-            model_number = st.selectbox('Select Party Name', options=[''] + name[manufacturer])
+        warh = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
+        # display selectbox 2 if warh is not "select"
+        if warh != '':
+            plan = st.selectbox('Select Party Name', options=[''] + name[warh])
         if st.button('Submit'):
             # unique warehouses and party_names
             warehouses = df['Warehouse'].unique()
@@ -207,11 +197,11 @@ def main():
             # Before_Optimization the Transportation Cost in ₹
             before_opt_cost = df['Amount'].sum()
             
-            st.write('You selected ' + manufacturer + ' ' + model_number)
+            st.write('You selected ' + warh + ' ' + plan)
 
             st.write('RESULT DECISION VARIABLE')
 
-            result = decision_var_df.loc[manufacturer,model_number]
+            result = decision_var_df.loc[warh,plan]
             
             st.write('RESULT  = {:,} '.format(int(value(result))))
 

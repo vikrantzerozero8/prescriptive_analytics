@@ -23,7 +23,9 @@ def main():
         try:
 
             df=pd.read_csv(uploadedFile,  index_col=0)
-            df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
+            df.columns = df.columns.str.replace(' ', '')
+            df.columns = df.columns.str.lower()
+            df.rename(columns = {'Customername':"Party_Name","plant":"Warehouse","targetquantity":"Net_Weight","freightrate":"Freight_Rate"},inplace = True)
             st.write(df)
             
         except:

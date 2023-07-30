@@ -27,7 +27,7 @@ def main():
             
         except:
                 try:
-                    df = pd.read_excel(uploadedFile,sheet_name = 'Sheet1')
+                    df = pd.read_excel(uploadedFile,engine = "openpyxl",sheet_name = 'Sheet1')
                     
                 except:      
                     df = pd.DataFrame(uploadedFile)

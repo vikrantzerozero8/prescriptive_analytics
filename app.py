@@ -79,8 +79,8 @@ def main():
             model_number = st.selectbox('Select Party Name', options=[''] + name[manufacturer])
         if st.button('Submit'):
             # unique warehouses and party_names
-            warehouses = manufacturer
-            party_names = model_number
+            warehouses = df['Warehouse'].unique()
+            party_names = df['Party_Name'].unique()
             
             #Assigning freight rate for all warehouse
             df['Freight_Rate'] = 0

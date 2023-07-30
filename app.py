@@ -27,7 +27,7 @@ def main():
             
         except:
                 try:
-                    df = pd.read_excel(uploadedFile)
+                    df = pd.read_excel(uploadedFile, encoding='utf-8')
                     
                 except:      
                     df = pd.DataFrame(uploadedFile)

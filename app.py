@@ -31,6 +31,7 @@ def main():
                     
                 except:      
                     df = pd.DataFrame(uploadedFile)
+                    print(df)
         
                     
     else:

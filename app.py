@@ -32,10 +32,7 @@ def main():
                     "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],
                     "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
             # adding "select" as the first and default choice
-            warh = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
-            # display selectbox 2 if warh is not "select"
-            if warh != '':
-                plan = st.selectbox('Select Party Name', options=[''] + name[warh])
+            
             
         except:
                 try:
@@ -47,7 +44,12 @@ def main():
                     
     else:
         st.sidebar.warning("you need to upload a csv or excel file.")
-    
+        
+    # adding "select" as the first and default choice
+    warh = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
+    # display selectbox 2 if warh is not "select"
+    if warh != '':
+        plan = st.selectbox('Select Party Name', options=[''] + name[warh])
     if st.button('Submit'):
         
         if df["Net_Weight"].dtype == object:

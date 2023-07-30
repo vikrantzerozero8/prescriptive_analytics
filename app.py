@@ -197,15 +197,15 @@ def main():
             # Before_Optimization the Transportation Cost in ₹
             before_opt_cost = df['Amount'].sum()
             
-            st.write('You selected ' + warh + ' ' + plan)
+            st.write('Route is  ' + warh + '   TO   ' + plan)
 
             st.write('RESULT DECISION VARIABLE')
 
             result = decision_var_df.loc[warh,plan]
             
-            st.write('RESULT  = {:,} '.format(int(value(result))))
+            st.write("TARGET QUANTITY FOR "+warh + '   TO   ' + plan + '  = {:,} '.format(int(value(result))))
 
-            st.write('COMPLETE DECISION VARIABLE')
+            st.write('COMPLETE DECISION VARIABLE FOR TARGET QUANTITY')
     
             st.table(decision_var_df)
 

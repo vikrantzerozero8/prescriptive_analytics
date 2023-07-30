@@ -17,45 +17,37 @@ def main():
     <h2 style="color:white;text-align:center;"> Transportation cost prediction </h2>
     </div>
     """
+    
     uploadedFile = st.sidebar.file_uploader("Choose a file" ,type=['csv','xlsx'],accept_multiple_files=False,key="fileUploader")
     if uploadedFile is not None :
         try:
 
             df=pd.read_csv(uploadedFile,  index_col=0)
-            df = df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
+
             name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
-            "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
-            "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],
-            "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
-            "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],
-            "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
+                    "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
+                    "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],
+                    "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
+                    "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],
+                    "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
+            # adding "select" as the first and default choice
+            warh = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
+            # display selectbox 2 if warh is not "select"
+            if warh != '':
+                plan = st.selectbox('Select Party Name', options=[''] + name[warh])
+            
         except:
                 try:
                     df = pd.read_excel(uploadedFile,  index_col=0)
-                    name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
-                    "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
-                    "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],
-                    "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
-                    "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],
-                    "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
+                    
                 except:      
                     df = pd.DataFrame(uploadedFile)
-                    name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
-                    "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
-                    "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],
-                    "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
-                    "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],
-                    "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
+        
+                    
     else:
         st.sidebar.warning("you need to upload a csv or excel file.")
     
     if st.button('Submit'):
-
-        # adding "select" as the first and default choice
-        warh = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
-        # display selectbox 2 if warh is not "select"
-        if warh != '':
-            plan = st.selectbox('Select Party Name', options=[''] + name[warh])
         
         if df["Net_Weight"].dtype == object:
             gh = []

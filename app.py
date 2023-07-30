@@ -22,7 +22,7 @@ def main():
     if uploadedFile is not None :
         try:
 
-            df=pd.read_csv(uploadedFile,  index_col=0)
+            df=pd.read_csv(uploadedFile)
             
             
         except:

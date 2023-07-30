@@ -39,7 +39,7 @@ def main():
     if uploadedFile is not None : 
         df.columns = df.columns.str.replace(' ', '')
         df.columns = df.columns.str.lower()
-        st.write(df)
+        
         df.rename(columns = {'customername':"Party_Name","plant":"Warehouse","targetquantity":"Net_Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
         
         name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,

@@ -18,7 +18,7 @@ def main():
     </div>
     """
     
-    uploadedFile = st.sidebar.file_uploader("Choose a file" ,type=['csv','xlsx'],accept_multiple_files=False,key="fileUploader")
+    uploadedFile = st.sidebar.file_uploader("Choose a file" ,type=['csv','xlsx'],accept_multiple_files=True,key="fileUploader")
     if uploadedFile is not None :
         try:
 

@@ -23,7 +23,7 @@ def main():
         try:
 
             df=pd.read_csv(uploadedFile,  index_col=0)
-            print(df)
+            st.write(df)
             
         except:
                 try:
@@ -31,7 +31,7 @@ def main():
                     
                 except:      
                     df = pd.DataFrame(uploadedFile)
-                    print(df)
+                    
         
                     
     else:

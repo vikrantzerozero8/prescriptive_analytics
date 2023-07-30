@@ -1,4 +1,4 @@
-xlrd
+openpyxl
 numpy
 pandas
 streamlit

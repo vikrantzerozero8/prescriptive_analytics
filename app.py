@@ -1,26 +1,23 @@
-from github import Github
 from pulp import*
 import numpy as np
 import pandas as pd
 import streamlit as st
 
-g = Github("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")
+uploadedFile = st.sidebar.file_uploader("Choose a file" ,type=['csv','xlsx'],accept_multiple_files=False,key="fileUploader")
+    if uploadedFile is not None :
+        try:
 
-user = g.get_user()
+            data=pd.read_csv(uploadedFile,  index_col=0)
+        except:
+                try:
+                    data = pd.read_excel(uploadedFile,  index_col=0)
+                except:      
+                    data = pd.DataFrame(uploadedFile)
+                
+    else:
+        st.sidebar.warning("you need to upload a csv or excel file.")
+   
 
-repository = user.get_repo('prescriptive_analytics')
-
-file_content = repository.get_contents('June23.csv')
-
-bytes_data=file_content.decoded_content
-
-s=str(bytes_data,'utf-8')
-
-file = open("data.txt","w")
-
-file.write(s)
-
-df = pd.read_csv('data.txt')
 df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
 
 if df["Net_Weight"].dtype == object:

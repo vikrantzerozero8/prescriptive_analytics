@@ -3,37 +3,19 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 
-uploadedFile = st.sidebar.file_uploader("Choose a file" ,type=['csv','xlsx'],accept_multiple_files=False,key="fileUploader")
-if uploadedFile is not None :
+df = st.sidebar.file_uploader("Choose a file" ,type=['csv','xlsx'],accept_multiple_files=False,key="fileUploader")
+if df is not None :
     try:
 
-        data=pd.read_csv(uploadedFile,  index_col=0)
+        data=pd.read_csv(df,  index_col=0)
     except:
             try:
-                data = pd.read_excel(uploadedFile,  index_col=0)
+                data = pd.read_excel(df,  index_col=0)
             except:      
-                data = pd.DataFrame(uploadedFile)
+                data = pd.DataFrame(df)
             
 else:
     st.sidebar.warning("you need to upload a csv or excel file.")
-
-
-df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
-
-if df["Net_Weight"].dtype == object:
-    gh = []
-    for i in df['Net_Weight']:
-            i = re.sub('[-_,a-zA-Z \n\.\s]', '', i)
-            gh.append(i)
-    df1 = pd.DataFrame({'Net_Weight':gh})
-    df['Net_Weight'] = df1['Net_Weight'].astype("float")
-
-df['Amount'] = 0
-for i in df.index:
-    if (df['Freight_Rate'][i] == 100):
-        df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Net_Weight'] 
-    elif (df['Freight_Rate'][i] < 100):
-        df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Distance'] * df.at[i, 'Net_Weight'] 
 
 def main():
     st.title("Transportation cost prediction")
@@ -63,6 +45,24 @@ def main():
         if warh != '':
             plan = st.selectbox('Select Party Name', options=[''] + name[warh])
         if st.button('Submit'):
+            
+            df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
+            
+            if df["Net_Weight"].dtype == object:
+                gh = []
+                for i in df['Net_Weight']:
+                        i = re.sub('[-_,a-zA-Z \n\.\s]', '', i)
+                        gh.append(i)
+                df1 = pd.DataFrame({'Net_Weight':gh})
+                df['Net_Weight'] = df1['Net_Weight'].astype("float")
+            
+            df['Amount'] = 0
+            for i in df.index:
+                if (df['Freight_Rate'][i] == 100):
+                    df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Net_Weight'] 
+                elif (df['Freight_Rate'][i] < 100):
+                    df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Distance'] * df.at[i, 'Net_Weight'] 
+
             # unique warehouses and party_names
             warehouses = df['Warehouse'].unique()
             party_names = df['Party_Name'].unique()

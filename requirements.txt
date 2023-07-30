@@ -1,4 +1,4 @@
-PyGithub
+xlrd
 numpy
 pandas
 streamlit

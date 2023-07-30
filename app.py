@@ -30,14 +30,6 @@ def main():
     <h2 style="color:white;text-align:center;"> Transportation cost prediction </h2>
     </div>
     """
-    name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
-            "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
-            "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],       
-            "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
-            "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],     
-            "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
-
-    
     if __name__ == "__main__":
         # adding "select" as the first and default choice
         warh = st.selectbox('Select Warehouse', options=['']+list(name.keys()))

@@ -23,10 +23,7 @@ def main():
         try:
 
             df=pd.read_csv(uploadedFile,  index_col=0)
-            df.columns = df.columns.str.replace(' ', '')
-            df.columns = df.columns.str.lower()
-            df.rename(columns = {'Customername':"Party_Name","plant":"Warehouse","targetquantity":"Net_Weight","freightrate":"Freight_Rate"},inplace = True)
-            st.write(df)
+            
             
         except:
                 try:
@@ -40,9 +37,10 @@ def main():
     else:
         st.sidebar.warning("you need to upload a csv or excel file.")
     if uploadedFile is not None : 
-        
-        df.rename(columns = {'Customer Name':"Party_Name","Plant":"Warehouse","Target Quantity":"Net_Weight","Freight Rate":"Freight_Rate"},inplace = True)
-
+        df.columns = df.columns.str.replace(' ', '')
+        df.columns = df.columns.str.lower()
+        df.rename(columns = {'customername':"Party_Name","plant":"Warehouse","targetquantity":"Net_Weight","freightrate":"Freight_Rate"},inplace = True)
+        st.write(df)
         name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
                 "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
                 "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],

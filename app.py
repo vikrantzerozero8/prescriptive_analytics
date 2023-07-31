@@ -54,10 +54,8 @@ def main():
         # display selectbox 2 if warh is not "select"
         if warh != '':
             plan = st.selectbox('Select Party Name', options=[''] + name[warh])
-    if st.button('Submit'):
-
-        if df is not None : 
-        
+        if st.button('Submit'):
+            
             if df["Net_Weight"].dtype == object:
                 gh = []
                 for i in df['Net_Weight']:

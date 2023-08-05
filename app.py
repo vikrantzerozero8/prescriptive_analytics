@@ -50,7 +50,7 @@ def main():
                 "KSR4":df.Party_Name[df['Warehouse'] == "KSR4"].tolist() }
         
         
-        plan = st.selectbox('Select Party Name', options=[''] + df[Party_Name])
+        plan = st.selectbox('Select Party Name', options=[''] + df.Party_Name)
         if st.button('Submit'):
             
             if df["Net_Weight"].dtype == object:

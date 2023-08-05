@@ -196,7 +196,7 @@ def main():
             # Before_Optimization the Transportation Cost in ₹
             before_opt_cost = df['Amount'].sum()
             
-            st.write('ROUTE IS  ' + plan)
+            st.write('Party selected :   ' + plan)
     
             result = decision_var_df.loc[:,plan]
             

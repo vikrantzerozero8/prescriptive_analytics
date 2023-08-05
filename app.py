@@ -200,19 +200,19 @@ def main():
     
             result = decision_var_df.loc[:,plan]
             
-            st.write("TARGET QUANTITY FOR "+ plan + '  = {:,} '.format(int(value(result))))
+            #st.write("TARGET QUANTITY FOR "+ plan + '  = {:,} '.format(int(value(result))))
     
-            st.write('COMPLETE DECISION VARIABLE FOR TARGET QUANTITY')
+            #st.write('COMPLETE DECISION VARIABLE FOR TARGET QUANTITY')
     
-            st.table(decision_var_df)
+            st.table(result)
     
-            st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
+            #st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
     
-            st.write('total_cost_before_opt= {:,} '.format(int(value(before_opt_cost))))
+            #st.write('total_cost_before_opt= {:,} '.format(int(value(before_opt_cost))))
     
-            st.write('Difference_ before- after= {:,} '.format(int(value((before_opt_cost) -  sum(total_after_opt)))))
+            #st.write('Difference_ before- after= {:,} '.format(int(value((before_opt_cost) -  sum(total_after_opt)))))
     
-            st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
+            #st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
 
 if st.button("About"):
     st.text("Lets learn") 

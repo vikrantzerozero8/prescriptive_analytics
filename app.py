@@ -42,18 +42,15 @@ def main():
         
         df.rename(columns = {'customername':"Party_Name","plant":"Warehouse","targetquantity":"Net_Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
         
-        name = {"GIR":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR")] ,
-                "LKDRM2":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "LKDRM2")],
-                "RSDSH":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "RSDSH")],
-                "SLKPY":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "SLKPY")],
-                "GIR II":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "GIR II")],
-                "KSR4":[x for x in df.Party_Name if (True for NUM in df.Warehouse if NUM == "KSR4")]  }
-        # adding "select" as the first and default choice
-        # adding "select" as the first and default choice
-        warh = st.selectbox('Select Warehouse', options=['']+list(name.keys()))
-        # display selectbox 2 if warh is not "select"
-        if warh != '':
-            plan = st.selectbox('Select Party Name', options=[''] + name[warh])
+        name = {"GIR":df.Party_Name[df['Warehouse'] == "GIR"].tolist() ,
+                "LKDRM2":df.Party_Name[df['Warehouse'] == "LKDRM2"].tolist(),
+                "RSDSH":df.Party_Name[df['Warehouse'] == "RSDSH"].tolist(),
+                "SLKPY":df.Party_Name[df['Warehouse'] == "SLKPY"].tolist(),
+                "GIR II":df.Party_Name[df['Warehouse'] == "GIR II"].tolist(),
+                "KSR4":df.Party_Name[df['Warehouse'] == "KSR4"].tolist() }
+        
+        
+        plan = st.selectbox('Select Party Name', options=[''] + df[Party_Name])
         if st.button('Submit'):
             
             if df["Net_Weight"].dtype == object:
@@ -199,11 +196,11 @@ def main():
             # Before_Optimization the Transportation Cost in ₹
             before_opt_cost = df['Amount'].sum()
             
-            st.write('ROUTE IS  ' + warh + '   TO   ' + plan)
+            st.write('ROUTE IS  ' + plan)
     
-            result = decision_var_df.loc[warh,plan]
+            result = decision_var_df.loc[:,plan]
             
-            st.write("TARGET QUANTITY FOR "+warh + '   TO   ' + plan + '  = {:,} '.format(int(value(result))))
+            st.write("TARGET QUANTITY FOR "+ plan + '  = {:,} '.format(int(value(result))))
     
             st.write('COMPLETE DECISION VARIABLE FOR TARGET QUANTITY')
     

@@ -2,7 +2,7 @@ from pulp import*
 import numpy as np
 import pandas as pd
 import streamlit as st
-
+from PIL import Image
 
 def main():
     image_path = r"robo_Logo1.jpeg"

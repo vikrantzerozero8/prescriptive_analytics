@@ -209,7 +209,7 @@ def main():
             total_after_opt
             
             total1 = sum(total_after_opt)
-            print('total_cost_after_opt',total1)
+            st.write('total_cost_after_opt= {:,} '.format(int(value(total1))))
             
             # Before_Optimization the Transportation Cost in ₹
             before_opt_cost = df['Amount'].sum()
@@ -224,13 +224,13 @@ def main():
     
             st.table(result)
     
-            #st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
+            st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
     
-            #st.write('total_cost_before_opt= {:,} '.format(int(value(before_opt_cost))))
+            st.write('total_cost_before_opt= {:,} '.format(int(value(before_opt_cost))))
     
-            #st.write('Difference_ before- after= {:,} '.format(int(value((before_opt_cost) -  sum(total_after_opt)))))
+            st.write('Difference_ before- after= {:,} '.format(int(value((before_opt_cost) -  sum(total_after_opt)))))
     
-            #st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
+            st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
 
 if st.button("About"):
     st.text("Lets learn") 

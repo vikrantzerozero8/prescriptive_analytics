@@ -30,15 +30,18 @@ def main():
     else:
         st.sidebar.warning("Upload a CSV or Excel file.")
         return
+    
     if uploadedFile is not None:
+        
             
         df.columns = df.columns.str.replace(' ', '') 
         df.columns = df.columns.str.lower() 
     
         df.rename(columns = {'customername':"Party Name","plant":"Warehouse","targetquantity":"Net Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
-        df.columns
-        df.dtypes
-        df.Warehouse
+        
+        customers_list = df['Party Name'].unique()
+        selected_customer = st.selectbox("Select Customer Name to View Data:", customers_list)
+
         warehouses = df['Warehouse'].unique()
         party_names = df['Party Name'].unique()
         df['Freight_Rate'] = 0
@@ -142,11 +145,6 @@ def main():
         st.write('total_cost_after_opt= {:,} '.format(int(value(total1))))
 
         
-        #st.write('Difference_ before- after= {:,} '.format(int(value((before_opt_cost) -  sum(total_after_opt)))))
-    
-        #st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
-
-        # Calculate transportation cost before optimization
         
         if st.button("Submit"):
             if selected_customer:

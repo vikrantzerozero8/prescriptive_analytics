@@ -54,9 +54,9 @@ def main():
         df['Amount'] = 0
         for i in df.index:
             if (df['Freight_Rate'][i] == 100):
-                df.at[i, "Amount"] = float(df.at[i, 'Freight_Rate']) * float(df.at[i, 'Net Weight'])
+                df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Net Weight']
             elif (df['Freight_Rate'][i] < 100):
-                df.at[i, "Amount"] = float(df.at[i, 'Freight_Rate']) * float(df.at[i, 'Distance']) * float(df.at[i, 'Net Weight']) 
+                df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Distance'] * df.at[i, 'Net Weight']
     
     
         # Calculate shipping cost based on Freight Rate and Distance

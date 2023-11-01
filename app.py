@@ -39,6 +39,8 @@ def main():
         df.columns
         df.dtypes
         df.Warehouse
+        warehouses = df['Warehouse'].unique()
+        party_names = df['Party Name'].unique()
         df['Freight_Rate'] = 0
         for i in df.index:
             if df['Warehouse'][i] in ['GIR', 'GIR II']:

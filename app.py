@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 from pulp import *
+import numpy as np
 
 # Function to optimize transportation and display results
 def optimize_transportation(df):
@@ -136,7 +137,7 @@ def main():
     df.columns = df.columns.str.lower()
 
     df.rename(columns = {'customername':"Party Name","plant":"Warehouse","targetquantity":"Net Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
-    df.columns
+    np.array(df.columns)
 
     customers_list = df['Customer Name'].unique()
     selected_customer = st.selectbox("Select Customer Name to View Data:", customers_list)

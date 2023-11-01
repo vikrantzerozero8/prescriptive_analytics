@@ -73,8 +73,6 @@ def main():
                     df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Net Weight']
                 elif (df['Freight_Rate'][i] < 100):
                     df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Distance'] * df.at[i, 'Net Weight']
-        
-            df.dtypes
             # Calculate shipping cost based on Freight Rate and Distance
             df['shipping_cost'] = 0
             for i in df.index:
@@ -124,12 +122,6 @@ def main():
             # Solve the problem
             prob.solve()
         
-            # Show total transportation cost
-            st.write('Total Transportation Costs = {:,}'.format(int(value(prob.objective))))
-        
-            # Display optimization status
-            st.write(f"Status: {LpStatus[prob.status]}")
-        
             # Create a DataFrame to store optimized quantities
             decision_var_df = pd.DataFrame(index=distance_matrix.index, columns=distance_matrix.columns, dtype='float')
             
@@ -154,13 +146,18 @@ def main():
             before_opt_cost = df['Amount'].sum()
             
             st.table(result)
-    
+            
             st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
 
             
             st.write('total_cost_before_opt= {:,} '.format(int(value(before_opt_cost))))
             
             st.write('total_cost_after_opt= {:,} '.format(int(value(total1))))
+
+            
+            # Display optimization status
+            st.write(f"Status: {LpStatus[prob.status]}")
+        
 
 
 

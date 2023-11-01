@@ -137,7 +137,7 @@ def main():
     df.columns = df.columns.str.lower()
 
     df.rename(columns = {'customername':"Party Name","plant":"Warehouse","targetquantity":"Net Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
-    np.array(df.columns)
+    df.columns
 
     customers_list = df['Customer Name'].unique()
     selected_customer = st.selectbox("Select Customer Name to View Data:", customers_list)

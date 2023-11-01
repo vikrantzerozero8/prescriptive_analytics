@@ -209,7 +209,7 @@ def main():
             total_after_opt
             
             total1 = sum(total_after_opt)
-            #print('total_cost_after_opt',total1)
+            print('total_cost_after_opt',total1)
             
             # Before_Optimization the Transportation Cost in ₹
             before_opt_cost = df['Amount'].sum()

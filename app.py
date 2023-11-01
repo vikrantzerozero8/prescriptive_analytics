@@ -90,27 +90,12 @@ def main():
         weight_mat.fillna(0, inplace=True)
     
         # Supply constraints for warehouses
-        supply = pd.pivot_table(df, values='Net Weight', index = 'Warehouse', aggfunc=sum, margins=True)
-        # Manually assign supply values
-        supply.loc['GIR'] =    1000000  # Supply for Warehouse 'GIR'
-        supply.loc['GIR II'] = 1000000  # Supply for Warehouse 'GIR II'
-        supply.loc['KSR4'] =   1000000  # Supply for Warehouse 'KSR4'
-        supply.loc['LKDRM2'] = 1000000 # Supply for Warehouse 'LKDRM2'
-        supply.loc['RSDSH'] =  1000000 # Supply for Warehouse 'RSDSH'
-        supply.loc['SLKPY'] =  1000000 # Supply for Warehouse 'SLKPY'
-        # Add supply values for other warehouses in a similar manner
-        # Remove the 'All' row from supply
-        supply = supply.iloc[:-1]
+        # Supply constraints for warehouses
+        supply = {'GIR': 1000000, 'GIR II': 1000000, 'KSR4': 1000000, 'LKDRM2': 1000000, 'RSDSH': 1000000, 'SLKPY': 1000000}
         
         # Demand for each party
-        demand = pd.pivot_table(df, values='Net Weight', index ='Warehouse', columns ='Party Name', aggfunc = sum, margins =True, margins_name='Grand Total')
-        #demand
-        
-        # Only consider the Demand
-        demand = demand.iloc[6:]
-        # Rename the column
-        demand.rename(index= {'Grand Total': 'Demand'}, inplace = True)
-    
+        demand = df.groupby('Party Name')['Net Weight'].sum()
+
         # Create the optimization problem
         prob = LpProblem("Transportation Problem", LpMinimize)
     
@@ -146,7 +131,7 @@ def main():
                 decision_var_df.loc[w, p] = route_vars[w][p].varValue
     
         # Calculate transportation cost after optimization
-        total_after_opt = (decision_var_df * df['Freight_Rate']).sum(axis=1)
+        total_after_opt = [decision_var_df.loc[w][p] * cost_mat.loc[w][p] .sum().sum() for w in warehouses for p in party_names]
     
         # Calculate transportation cost before optimization
         before_opt_cost = df['Amount'].sum()

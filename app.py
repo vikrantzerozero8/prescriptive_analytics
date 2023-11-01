@@ -162,10 +162,10 @@ def main():
             st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
     
             st.write('total_cost_before_opt= {:,} '.format(int(value(before_opt_cost))))
-    
-            st.write('Difference_ before- after= {:,} '.format(int(value((before_opt_cost) -  sum(total_after_opt)))))
-    
-            st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
+            diffrence =  (before_opt_cost) -  sum(total_after_opt)
+            st.write('Difference_ before- after= {:,} '.format(int(value(diffrence))))
+            percent = ((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100
+            st.write('percentage_decrease= {:,} '.format(int(value(percent))))
 
 
 if __name__ == '__main__':

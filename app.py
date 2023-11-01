@@ -37,6 +37,7 @@ def main():
     
         df.rename(columns = {'customername':"Customer Name","plant":"Warehouse","targetquantity":"Net Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
         df.columns
+        df.dtypes
     
         df['Freight_Rate'] = 0
         for i in df.index:

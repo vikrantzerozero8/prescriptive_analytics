@@ -50,6 +50,14 @@ def main():
                     df.at[i, 'Freight_Rate'] = 100
                 else:
                     df.at[i, 'Freight_Rate'] = 2.5
+
+        if df["Net Weight"].dtype == object:
+            gh = []
+            for i in df['Net Weight']:
+                    i = re.sub('[-_,a-zA-Z \n\.\s]', '', i)
+                    gh.append(i)
+            df1 = pd.DataFrame({'Net Weight':gh})
+            df['Net Weight'] = df1['Net Weight'].astype("float")
     
         df['Amount'] = 0
         for i in df.index:

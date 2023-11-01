@@ -133,46 +133,48 @@ def main():
     else:
         st.sidebar.warning("Upload a CSV or Excel file.")
         return
-    df.columns = df.columns.str.replace(' ', '')
-    df.columns = df.columns.str.lower()
-
-    df.rename(columns = {'customername':"Party Name","plant":"Warehouse","targetquantity":"Net Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
-    df.columns
-
-    customers_list = df['Customer Name'].unique()
-    selected_customer = st.selectbox("Select Customer Name to View Data:", customers_list)
-
-    if st.button("Submit"):
-        if selected_customer:
-            filtered_data = df[df['Customer Name'] == selected_customer]
-            if not filtered_data.empty:
-                st.dataframe(filtered_data)
-                st.success(f"Data for Customer Name: {selected_customer}")
-
-                # Perform optimization and calculate after optimization cost
-                decision_var_df = optimize_transportation(df)
-                total_after_opt = (decision_var_df * df['Freight_Rate']).sum(axis=1).to_frame('After Optimization Amount')
-
-                # Before Optimization the Transportation Cost in ₹
-                before_opt_cost = df['Amount'].sum()
-                total_before_opt = pd.DataFrame({'Before Optimization Amount': [before_opt_cost] * len(total_after_opt.index)},
-                                                index=total_after_opt.index)
-
-                # Cost Matrix
-                cost_matrix = pd.concat([total_before_opt, total_after_opt], axis=1)
-                st.dataframe(cost_matrix.style.format('{:.2f}'))
-
-                # Comparison Table
-                comparison_table = pd.DataFrame(
-                    {'Before Optimization': [before_opt_cost], 'After Optimization': [total_after_opt.sum().iloc[0]]})
-                comparison_table['Difference'] = comparison_table['Before Optimization'] - comparison_table['After Optimization']
-                comparison_table['Percentage Decrease'] = (comparison_table['Difference'] / comparison_table[
-                    'Before Optimization']) * 100
-                st.dataframe(comparison_table.style.format('{:.2f}'))
+    if uploadedFile is not None:
+            
+        df.columns = df.columns.str.replace(' ', '')
+        df.columns = df.columns.str.lower()
+    
+        df.rename(columns = {'customername':"Party Name","plant":"Warehouse","targetquantity":"Net Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
+        df.columns
+    
+        customers_list = df['Customer Name'].unique()
+        selected_customer = st.selectbox("Select Customer Name to View Data:", customers_list)
+    
+        if st.button("Submit"):
+            if selected_customer:
+                filtered_data = df[df['Customer Name'] == selected_customer]
+                if not filtered_data.empty:
+                    st.dataframe(filtered_data)
+                    st.success(f"Data for Customer Name: {selected_customer}")
+    
+                    # Perform optimization and calculate after optimization cost
+                    decision_var_df = optimize_transportation(df)
+                    total_after_opt = (decision_var_df * df['Freight_Rate']).sum(axis=1).to_frame('After Optimization Amount')
+    
+                    # Before Optimization the Transportation Cost in ₹
+                    before_opt_cost = df['Amount'].sum()
+                    total_before_opt = pd.DataFrame({'Before Optimization Amount': [before_opt_cost] * len(total_after_opt.index)},
+                                                    index=total_after_opt.index)
+    
+                    # Cost Matrix
+                    cost_matrix = pd.concat([total_before_opt, total_after_opt], axis=1)
+                    st.dataframe(cost_matrix.style.format('{:.2f}'))
+    
+                    # Comparison Table
+                    comparison_table = pd.DataFrame(
+                        {'Before Optimization': [before_opt_cost], 'After Optimization': [total_after_opt.sum().iloc[0]]})
+                    comparison_table['Difference'] = comparison_table['Before Optimization'] - comparison_table['After Optimization']
+                    comparison_table['Percentage Decrease'] = (comparison_table['Difference'] / comparison_table[
+                        'Before Optimization']) * 100
+                    st.dataframe(comparison_table.style.format('{:.2f}'))
+                else:
+                    st.warning(f"No data found for Customer Name: {selected_customer}")
             else:
-                st.warning(f"No data found for Customer Name: {selected_customer}")
-        else:
-            st.warning("Please select a Customer Name to view data.")
+                st.warning("Please select a Customer Name to view data.")
 
 if __name__ == '__main__':
     main()

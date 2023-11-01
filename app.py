@@ -142,12 +142,12 @@ def main():
         # Save the weight matrix to a CSV file
         weight_mat.to_csv('initial_weight_june23_actual.csv')
         
-        customers_list = df['Customer Name'].unique()
+        customers_list = df['Party Name'].unique()
         selected_customer = st.selectbox("Select Customer Name to View Data:", customers_list)
     
         if st.button("Submit"):
             if selected_customer:
-                filtered_data = df[df['Customer Name'] == selected_customer]
+                filtered_data = df[df['Party Name'] == selected_customer]
                 if not filtered_data.empty:
                     st.dataframe(filtered_data)
                     st.success(f"Data for Customer Name: {selected_customer}")

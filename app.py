@@ -132,8 +132,6 @@ def main():
         
             # Create a DataFrame to store optimized quantities
             decision_var_df = pd.DataFrame(index=distance_matrix.index, columns=distance_matrix.columns, dtype='float')
-            decision_var_df.dtypes
-            cost_mat.dtypes
             
             # Fill the DataFrame with the optimized values of the decision variables
             for w in distance_matrix.index:
@@ -144,8 +142,6 @@ def main():
             total_after_opt = [decision_var_df.loc[w][p] * cost_mat.loc[w][p].sum().sum() for w in warehouses for p in party_names]
             total1 = sum(total_after_opt)
             
-            st.write('total_cost_after_opt= {:,} '.format(int(value(total1))))
-
             st.write('Party selected :   ' + selected_customer)
     
             result = decision_var_df.loc[:,selected_customer]
@@ -160,12 +156,12 @@ def main():
             st.table(result)
     
             st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
-    
+
+            
             st.write('total_cost_before_opt= {:,} '.format(int(value(before_opt_cost))))
-            diffrence =  (before_opt_cost) -  sum(total_after_opt)
-            st.write('Difference_ before- after= {:,} '.format(int(value(diffrence))))
-            percent = ((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100
-            st.write('percentage_decrease= {:,} '.format(int(value(percent))))
+            
+            st.write('total_cost_after_opt= {:,} '.format(int(value(total1))))
+
 
 
 if __name__ == '__main__':

@@ -136,6 +136,13 @@ def main():
         decision_var_df 
         # Calculate transportation cost after optimization
         total_after_opt = [decision_var_df.loc[w][p] * cost_mat.loc[w][p]  for w in distance_matrix.index for p in distance_matrix.columns]
+        
+        # Multiplying the DataFrames
+        result_df = decision_var_df.dot(cost_mat)
+        
+        # Displaying the result
+        result_df
+        
         total_after_opt
         #st.write('Difference_ before- after= {:,} '.format(int(value((before_opt_cost) -  sum(total_after_opt)))))
     

@@ -126,7 +126,8 @@ def main():
     
         # Create a DataFrame to store optimized quantities
         decision_var_df = pd.DataFrame(index=distance_matrix.index, columns=distance_matrix.columns, dtype='float')
-    
+        decision_var_df.dtypes
+        cost_mat.dtypes
         # Fill the DataFrame with the optimized values of the decision variables
         for w in distance_matrix.index:
             for p in distance_matrix.columns:

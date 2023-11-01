@@ -153,7 +153,7 @@ def main():
                     st.success(f"Data for Customer Name: {selected_customer}")
     
                     # Perform optimization and calculate after optimization cost
-                    decision_var_df = optimize_transportation(df)
+                    decision_var_df = decision_var_df
                     total_after_opt = (decision_var_df * df['Freight_Rate']).sum(axis=1).to_frame('After Optimization Amount')
     
                     # Before Optimization the Transportation Cost in ₹

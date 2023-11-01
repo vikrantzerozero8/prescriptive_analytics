@@ -204,6 +204,9 @@ def main():
             
             # Verify the cost after Optimization
             total_after_opt = [decision_var_df.loc[w][p] * cost_mat.loc[w][p] .sum().sum() for w in warehouses for p in party_names]
+            decision_var_df
+            cost_mat
+            total_after_opt
             
             total1 = sum(total_after_opt)
             #print('total_cost_after_opt',total1)

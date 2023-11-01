@@ -135,11 +135,11 @@ def main():
         return
     if uploadedFile is not None:
             
-        df.columns = df.columns.str.replace(' ', '')
-        df.columns = df.columns.str.lower()
+        df.columns = df.columns.str.replace(' ', '') 
+        df.columns = df.columns.str.lower() 
     
-        df.rename(columns = {'customername':"Party Name","plant":"Warehouse","targetquantity":"Net Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
-        #df.columns
+        df.rename(columns = {'customername':"Customer Name","plant":"Warehouse","targetquantity":"Net Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
+        df.columns
     
         customers_list = df['Customer Name'].unique()
         selected_customer = st.selectbox("Select Customer Name to View Data:", customers_list)

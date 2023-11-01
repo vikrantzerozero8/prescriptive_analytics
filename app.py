@@ -90,7 +90,7 @@ def main():
         weight_mat.fillna(0, inplace=True)
     
         # Supply constraints for warehouses
-        supply = pd.pivot_table(df, values='Net_Weight', index = 'Warehouse', aggfunc=sum, margins=True)
+        supply = pd.pivot_table(df, values='Net Weight', index = 'Warehouse', aggfunc=sum, margins=True)
         # Manually assign supply values
         supply.loc['GIR'] =    1000000  # Supply for Warehouse 'GIR'
         supply.loc['GIR II'] = 1000000  # Supply for Warehouse 'GIR II'
@@ -103,7 +103,7 @@ def main():
         supply = supply.iloc[:-1]
         
         # Demand for each party
-        demand = pd.pivot_table(df, values='Net_Weight', index ='Warehouse', columns ='Party_Name', aggfunc = sum, margins =True, margins_name='Grand Total')
+        demand = pd.pivot_table(df, values='Net Weight', index ='Warehouse', columns ='Party Name', aggfunc = sum, margins =True, margins_name='Grand Total')
         #demand
         
         # Only consider the Demand

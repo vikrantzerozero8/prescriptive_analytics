@@ -35,7 +35,7 @@ def main():
         df.columns = df.columns.str.replace(' ', '') 
         df.columns = df.columns.str.lower() 
     
-        df.rename(columns = {'customername':"Customer Name","plant":"Warehouse","targetquantity":"Net Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
+        df.rename(columns = {'customername':"Party Name","plant":"Warehouse","targetquantity":"Net Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
         df.columns
         df.dtypes
     

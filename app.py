@@ -136,6 +136,12 @@ def main():
         # Calculate transportation cost after optimization
         total_after_opt = [decision_var_df.loc[w][p] * cost_mat.loc[w][p] .sum().sum() for w in warehouses for p in party_names]
         total_after_opt
+        total1 = sum(total_after_opt)
+
+        st.write('Difference_ before- after= {:,} '.format(int(value((before_opt_cost) -  sum(total_after_opt)))))
+    
+        st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
+
         # Calculate transportation cost before optimization
         before_opt_cost = df['Amount'].sum()
     

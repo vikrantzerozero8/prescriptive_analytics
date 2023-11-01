@@ -141,7 +141,7 @@ def main():
             decision_var_df = decision_var_df
             
             total_after_opt = (decision_var_df * df['Freight_Rate']).sum(axis=1).to_frame('After Optimization Amount')
-            total_after_opt
+      
             # Before Optimization the Transportation Cost in ₹
             before_opt_cost = df['Amount'].sum()
             

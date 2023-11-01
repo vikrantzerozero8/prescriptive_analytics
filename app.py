@@ -38,7 +38,7 @@ def main():
         df.rename(columns = {'customername':"Party Name","plant":"Warehouse","targetquantity":"Net Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
         df.columns
         df.dtypes
-    
+        df.Warehouse
         df['Freight_Rate'] = 0
         for i in df.index:
             if df['Warehouse'][i] in ['GIR', 'GIR II']:

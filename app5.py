@@ -139,28 +139,15 @@ def main():
         total_after_opt = [decision_var_df.loc[w][p] * cost_mat.loc[w][p].sum().sum() for w in warehouses for p in party_names]
         total1 = sum(total_after_opt)
         
-        total1
+        st.write('total_cost_after_opt= {:,} '.format(int(value(total1))))
+
+        
         #st.write('Difference_ before- after= {:,} '.format(int(value((before_opt_cost) -  sum(total_after_opt)))))
     
         #st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
 
         # Calculate transportation cost before optimization
-        before_opt_cost = df['Amount'].sum()
-    
-        # Calculate cost difference and percentage decrease
-        cost_difference = before_opt_cost - total_after_opt.sum()
-        percentage_decrease = (cost_difference / before_opt_cost) * 100
-    
-        # Save the weight matrix to a CSV file
-        weight_mat.to_csv('initial_weight_june23_actual.csv')
         
-        customers_list = df['Party Name'].unique()
-        selected_customer = st.selectbox("Select Customer Name to View Data:", customers_list)
-        
-        st.write('Difference_ before- after= {:,} '.format(int(value((before_opt_cost) -  sum(total_after_opt)))))
-    
-        st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
-
         if st.button("Submit"):
             if selected_customer:
                 filtered_data = df[df['Party Name'] == selected_customer]

@@ -156,21 +156,17 @@ def main():
             total_after_opt
             # Before Optimization the Transportation Cost in ₹
             before_opt_cost = df['Amount'].sum()
-            total_before_opt = pd.DataFrame({'Before Optimization Amount': [before_opt_cost] * len(total_after_opt.index)},
-                                            index=total_after_opt.index)
+            
+            st.table(result)
+    
+            st.write('Total_transportation_Costs = {:,} '.format(int(value(prob.objective))))
+    
+            st.write('total_cost_before_opt= {:,} '.format(int(value(before_opt_cost))))
+    
+            st.write('Difference_ before- after= {:,} '.format(int(value((before_opt_cost) -  sum(total_after_opt)))))
+    
+            st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
 
-            # Cost Matrix
-            cost_matrix = pd.concat([total_before_opt, total_after_opt], axis=1)
-            st.dataframe(cost_matrix.style.format('{:.2f}'))
-
-            # Comparison Table
-            comparison_table = pd.DataFrame(
-                {'Before Optimization': [before_opt_cost], 'After Optimization': [total_after_opt.sum().iloc[0]]})
-            comparison_table['Difference'] = comparison_table['Before Optimization'] - comparison_table['After Optimization']
-            comparison_table['Percentage Decrease'] = (comparison_table['Difference'] / comparison_table[
-                'Before Optimization']) * 100
-            st.dataframe(comparison_table.style.format('{:.2f}'))
-        
 
 if __name__ == '__main__':
     main()

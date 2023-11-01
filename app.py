@@ -8,7 +8,7 @@ def optimize_transportation(df):
     df.columns = df.columns.str.lower()
 
     df.rename(columns = {'customername':"Party Name","plant":"Warehouse","targetquantity":"Net Weight","freightrate":"Freight_Rate","distance":"Distance"},inplace = True)
-    df
+    df.columns
     # Rename columns for clarity
     #df.rename(columns={'Customer Name': , "Plant": "Warehouse", "Target Quantity": }, inplace=True)
 

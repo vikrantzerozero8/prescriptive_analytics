@@ -68,7 +68,7 @@ def main():
             elif (df['Freight_Rate'][i] < 100):
                 df.at[i, "Amount"] = df.at[i, 'Freight_Rate'] * df.at[i, 'Distance'] * df.at[i, 'Net Weight']
     
-    
+        df.dtypes
         # Calculate shipping cost based on Freight Rate and Distance
         df['shipping_cost'] = 0
         for i in df.index:

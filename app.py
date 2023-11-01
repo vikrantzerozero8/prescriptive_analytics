@@ -131,6 +131,7 @@ def main():
         for w in distance_matrix.index:
             for p in distance_matrix.columns:
                 decision_var_df.loc[w, p] = route_vars[w][p].varValue
+        distance_matrix
     
         # Calculate transportation cost after optimization
         total_after_opt = [decision_var_df.loc[w][p] * cost_mat.loc[w][p] .sum().sum() for w in warehouses for p in party_names]

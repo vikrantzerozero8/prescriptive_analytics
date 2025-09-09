@@ -255,6 +255,18 @@ if __name__=='__main__':
 
 
 st.write("\n\n\n")
+
+if st.button("About", key="data_link_button"):
+    st.write("Lets learn")
+    st.markdown("""
+    <style>
+    div.stButton > button:first-child {
+        background-color: orange;
+        color: white;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
 if st.button("About"):
     st.text("Lets learn") 
     st.text("Built with streamlit")  

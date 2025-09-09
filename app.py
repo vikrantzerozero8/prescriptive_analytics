@@ -261,7 +261,7 @@ if st.button("About", key="data_link_button"):
     st.markdown("""
     <style>
     div.stButton > button:first-child {
-        background-color: orange;
+        background-color: #FF9800;
         color: white;
     }
     </style>

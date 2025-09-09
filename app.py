@@ -231,6 +231,12 @@ def main():
     
             st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
 
+
+
+if st.button("Data link"):
+    st.write("https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing")
+    
+
 if st.button("About"):
     st.text("Lets learn") 
     st.text("Built with streamlit")  

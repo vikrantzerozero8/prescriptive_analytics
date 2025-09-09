@@ -235,17 +235,6 @@ def main():
 
 
 
-if st.button("Data link", key="data_link_button"):
-    st.write("https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing")
-    st.markdown("""
-    <style>
-    div.stButton > button:first-child {
-        background-color: #4CAF50;
-        color: white;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-
 
 st.write("\n")
 if __name__=='__main__':
@@ -255,18 +244,27 @@ if __name__=='__main__':
 
 
 st.write("\n\n\n")
+# Put this once at the top of your script (after imports)
+st.markdown("""
+<style>
+/* Green button for Data Link */
+div[data-testid="stButton"][id="data_link_button"] > button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Orange button for About */
+div[data-testid="stButton"][id="data_about_button"] > button {
+    background-color: #FF9800;
+    color: white;
+}
+</style>
+""", unsafe_allow_html=True)
+
+if st.button("Data link", key="data_link_button"):
+    st.write("https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing")
 
 if st.button("About", key="data_about_button"):
     st.write("Lets learn")
-    st.markdown("""
-    <style>
-    div.stButton > button:first-child {
-        background-color: #FF9800;
-        color: white;
-    }
-    </style>
-    """, unsafe_allow_html=True)
-    
-if st.button("About"):
-    st.text("Lets learn") 
-    st.text("Built with streamlit")  
+    st.text("Built with Streamlit")
+

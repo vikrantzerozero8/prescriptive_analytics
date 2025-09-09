@@ -235,28 +235,8 @@ def main():
 
 
 
-# Container bana lo "Data link" button ke liye
-data_link_container = st.container()
-
-with data_link_container:
-    if st.button("Data link"):
-        st.write("https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing")
-
-# CSS sirf upar wale container ke liye
-st.markdown(f"""
-    <style>
-    div[data-testid="stVerticalBlock"] div:nth-of-type(1) button {{
-        background-color: green;
-        color: white;
-        font-weight: bold;
-        border-radius: 8px;
-    }}
-    div[data-testid="stVerticalBlock"] div:nth-of-type(1) button:hover {{
-        background-color: darkgreen;
-        color: white;
-    }}
-    </style>
-    """, unsafe_allow_html=True)
+if st.button("Data link"):
+    st.write("https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing")
 
 
 

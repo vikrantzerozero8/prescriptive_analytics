@@ -232,6 +232,24 @@ def main():
             st.write('percentage_decrease= {:,} '.format(int(value(((((before_opt_cost) -  sum(total_after_opt)))/(before_opt_cost))*100))))
 
 
+
+# CSS only for "Data link" button
+st.markdown("""
+    <style>
+    div.stButton > button[kind="secondary"] {
+        background-color: green;
+        color: white;
+        font-weight: bold;
+        border-radius: 8px;
+    }
+    div.stButton > button[kind="secondary"]:hover {
+        background-color: darkgreen;
+        color: white;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+
 if st.button("Data link"):
     st.write("https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing")
     

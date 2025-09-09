@@ -235,8 +235,16 @@ def main():
 
 
 
-if st.button("Data link"):
+if st.button("Data link", key="data_link_button"):
     st.write("https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing")
+    st.markdown("""
+    <style>
+    div.stButton > button:first-child {
+        background-color: #4CAF50;
+        color: white;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
 
 

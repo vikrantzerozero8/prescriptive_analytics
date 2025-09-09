@@ -233,6 +233,12 @@ def main():
 
 
 
+
+if __name__=='__main__':
+    main()
+#import xlrd
+#book = xlrd.open_workbook("excel.xls") # in my case the directory contains the excel file named excel.xls
+
 if st.button("Data link"):
     st.write("https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing")
     
@@ -240,8 +246,3 @@ if st.button("Data link"):
 if st.button("About"):
     st.text("Lets learn") 
     st.text("Built with streamlit")  
-
-if __name__=='__main__':
-    main()
-#import xlrd
-#book = xlrd.open_workbook("excel.xls") # in my case the directory contains the excel file named excel.xls

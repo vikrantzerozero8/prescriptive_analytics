@@ -237,7 +237,7 @@ if __name__=='__main__':
 #import xlrd
 #book = xlrd.open_workbook("excel.xls") # in my case the directory contains the excel file named excel.xls
 
-st.write("\n\n\n\n\n")
+st.write("\n"*10)
 
 if st.button("Data link"):
     st.write("https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing")

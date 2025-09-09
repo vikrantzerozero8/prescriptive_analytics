@@ -235,20 +235,16 @@ def main():
 
 
 
-# Sirf "Data link" button ko green karna
-st.markdown("""
+if st.button("Data link", key="data_link_button"):
+    st.write("https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing")
+    st.markdown("""
     <style>
-    div[data-testid="stButton"][id="data_link"] > button {
-        background-color: green;
+    div.stButton > button:first-child {
+        background-color: #4CAF50;
         color: white;
     }
     </style>
     """, unsafe_allow_html=True)
-
-if st.button("Data link", key="data_link"):
-    st.write("https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing")
-
-
 
 
 st.write("\n")

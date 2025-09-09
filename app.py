@@ -344,7 +344,7 @@ with col2:
 
 # Display content based on button clicks
 if st.session_state.get('show_data_link'):
-    st.markdown('<div class="success-msg">Data link copied to clipboard!</div>', unsafe_allow_html=True)
+    
     st.markdown('<a href="https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing" class="data-link" target="_blank">📎 Open Data Link</a>', unsafe_allow_html=True)
     st.write("https://drive.google.com/file/d/1WERrd0WxfI18X_XIBe6NyAMGwle-LbIy/view?usp=sharing")
 
@@ -352,32 +352,15 @@ if st.session_state.get('show_about'):
     st.markdown("""
     <div style="background-color: #f8f9fa; padding: 20px; border-radius: 5px; border-left: 4px solid #FF9800;">
         <h3>About This Application</h3>
-        <p>This is a demonstration of how to style Streamlit buttons using custom CSS.</p>
+        
         <p><strong>Built with:</strong></p>
         <ul>
             <li>Streamlit</li>
-            <li>Custom CSS</li>
+          
             <li>Python</li>
         </ul>
-        <p>The buttons are styled with hover effects and smooth transitions for a better user experience.</p>
+        
     </div>
     """, unsafe_allow_html=True)
 
-# Add some explanation
-st.markdown("---")
-st.markdown("""
-### How This Works
 
-The issue with your original code was that Streamlit generates dynamic IDs for elements, so using static CSS selectors with `[id="data_link_button"]` might not work reliably.
-
-Instead, this solution uses:
-1. CSS child selectors to target the buttons based on their position
-2. Session state to manage which content to display
-3. Enhanced styling with hover effects and transitions
-
-You can adapt this pattern for your own Streamlit applications.
-""")
-
-# Footer
-st.markdown("---")
-st.caption("Streamlit Button Styling Demo • Created with ❤️ using Streamlit")

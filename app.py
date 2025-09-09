@@ -256,7 +256,7 @@ if __name__=='__main__':
 
 st.write("\n\n\n")
 
-if st.button("About", key="data_link_button"):
+if st.button("About", key="data_about_button"):
     st.write("Lets learn")
     st.markdown("""
     <style>
